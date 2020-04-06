@@ -1,13 +1,13 @@
 html {
-  box-sizing: border-box;
-  font-size: 14px;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 body,
@@ -20,25 +20,53 @@ h6,
 p,
 ol,
 ul {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .ml-10 {
-  margin-left: 10px !important;
+    margin-left: 10px !important;
 }
 
 .u-border-left-none {
-  border-left: none !important;
+    border-left: none !important;
+}
+
+.swiper-pagination-bullet {
+    width: 5px !important;
+    height: 5px !important;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    bottom: 0 !important;
+}
+
+.icon-exchange {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAcZJREFUWAntlr1LQmEUxp9jWmEYlGMUFQ3ZUkNkBGFNDU7R0NTa7gdBS0hLEFH/Qf9Ck4NDlAR9EURL0lLQx6hSklR+nI7WeI+a6VC8Fy5czvs+z/ndRz2vgLlMAiYBk8A/TiAU5+XgId+Gj9hb62vaat1Yzz4uYpAZA4U8oitx9tTi0VSgThfWiXAqIO48IxaMc281qKYCRcYpy63wC9S1JNUrd2z1jN2VoJoKVGq8M0UpO2MOhHswPG9ZRMNX3KFB2bWF0AFvFQnz2vpP6jnZTICLv0TeQhq78rho5aECCcyCvFG/laie2jdMWUoM9VenAtkcmOEcJuppXk0j36XLanvMuknAJNCsBGReWV+BAx6SMT5mvfq7arENJzLBn6xc1DkkpIdFoMdK9OvaO27EY9jKRwWSWX8uk7p8dMjhmJZJ+2xlUFeNsKfpVCBbF5YKKeyL0CswGQdjenOWHjWjRtXV035rlF7bnfBLUglJqi9PiAWOubtRjTUfFagk2PBSUj6uObkf5PwZoQ9EIxfs1MwaUa8IVGqw7aMHu0DJY1KgJl8yWGtEY82jKlBJuOmjRIu9/M/vjmy41cxM3SRgEvgLCXwC6FZ0CcIK4PQAAAAASUVORK5CYII=');
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block !important;
 }

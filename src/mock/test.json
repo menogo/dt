@@ -1,0 +1,106 @@
+{
+    "day": {
+        "db_data": [
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-14 09:33:00",
+                "TRADE_NUM": "29",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19633",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "63.21"
+            },
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-14 08:50:00",
+                "TRADE_NUM": "39",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19672",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "59.18"
+            },
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-13 09:39:00",
+                "TRADE_NUM": "36",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19851",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "61.36"
+            },
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-13 09:37:00",
+                "TRADE_NUM": "36",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19777",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "62.39"
+            }
+        ],
+        "day_top_time": "2020-01-14 09:34:00",
+        "day_total_trade_rate": 532,
+        "day_total_trade_num": 60074,
+        "day_total_time": 80.12,
+        "day_suc_rate": 1.0,
+        "day_top_num": 154
+    },
+    "hour": {
+        "db_data": [
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-14 09:33:00",
+                "TRADE_NUM": "29",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19633",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "63.21"
+            },
+            {
+                "TARGET_ID": "PLF35793",
+                "TARGET_NAME": "聚合新-主扫商户-武汉地铁运营有限公司（充值）",
+                "TIMEORI": "2020-01-14 08:50:00",
+                "TRADE_NUM": "39",
+                "MAX_TRADE_NUM": "951",
+                "MAX_TRADE_DATE": "2020-01-07 00:34:00",
+                "SUM_TRADE_NUM": "19672",
+                "MAX_SUM_TRADE_DATE": "51726",
+                "MAX_DATE_DATE": "2020-01-13 23:59:00",
+                "SUC_DATE": "1",
+                "S_SUC_DATE": "1",
+                "RESPONESE_TIME": "59.18"
+            }
+        ],
+        "hour_top_time": "2020-01-14 09:34:00",
+        "hour_total_trade_rate": 78,
+        "hour_total_trade_num": 5003,
+        "hour_total_time": 30.34,
+        "hour_suc_rate": 0.26,
+        "hour_top_num": 78
+    }
+}
