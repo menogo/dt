@@ -34,7 +34,8 @@
                         @click="handleQRCZDetailClick(1, qRCZDetail.TARGET_NAME)"
                     >
                         <div class="title ellipsis">
-                            {{ qRCZDetail.TARGET_NAME || '二维码生成' }}
+                            <!-- {{ qRCZDetail.TARGET_NAME || '充值' }} -->
+                            充值
                         </div>
                         <div class="list">
                             <div class="item">
@@ -64,7 +65,8 @@
                         @click="handleQRQTDetailClick(2, qRQTDetail.TARGET_NAME)"
                     >
                         <div class="title ellipsis">
-                            {{ qRQTDetail.TARGET_NAME || '二维码下单' }}
+                            <!-- {{ qRQTDetail.TARGET_NAME || '其它' }} -->
+                            其它
                         </div>
                         <div class="list">
                             <div class="item">
