@@ -4,9 +4,7 @@
             <div class="container__meta">
                 <div class="meta">
                     <div class="meta__status">
-                        <div class="meta__status-title">
-                            {{ dayTopTime || '0000-00-00 00:00:00' }} 更新
-                        </div>
+                        <div class="meta__status-title">{{ dayTopTime || '0000-00-00 00:00:00' }} 更新</div>
                         <div class="meta__status-act" @click="switchToOldVersion">
                             <span class="art-active">旧</span>
                             <i class="icon-exchange"></i>
@@ -31,65 +29,49 @@
             </div>
             <div class="container__detail">
                 <section>
-                    <div
-                        class="container__detail-item ellipsis"
-                        @click="handleQRCZDetailClick(1, qRCZDetail.TARGET_NAME)"
-                    >
+                    <div class="container__detail-item ellipsis" @click="handleQRCZDetailClick(1, qRCZDetail.TARGET_NAME)">
                         <div class="title ellipsis">
                             <!-- {{ qRCZDetail.TARGET_NAME || '充值' }} -->
                             充值
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRCZDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRCZDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRCZDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRCZDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRCZDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRCZDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRCZDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span><span class="sumup">{{ qRCZDetail.SUC_RATE || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRCZDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span><span class="sumup">{{ qRCZDetail.S_SUC_RATE || '--' }}</span>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="container__detail-item ellipsis ml-10"
-                        @click="handleQRQTDetailClick(2, qRQTDetail.TARGET_NAME)"
-                    >
+                    <div class="container__detail-item ellipsis ml-10" @click="handleQRQTDetailClick(2, qRQTDetail.TARGET_NAME)">
                         <div class="title ellipsis">
                             <!-- {{ qRQTDetail.TARGET_NAME || '其他' }} -->
                             其他
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRQTDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRQTDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRQTDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRQTDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRQTDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRQTDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRQTDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span><span class="sumup">{{ qRQTDetail.SUC_RATE || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRQTDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span><span class="sumup">{{ qRQTDetail.S_SUC_RATE || '--' }}</span>
                             </div>
                         </div>
                     </div>
@@ -100,32 +82,16 @@
                     <!-- <div class="chart-title ellipsis">{{ chartTitle }}</div> -->
                     <div class="chart-title ellipsis">测试</div>
                     <div class="chart-tabs">
-                        <div
-                            class="tab"
-                            :class="tabIndex === 1 ? 'is-active' : ''"
-                            @click="switchToTRate(1)"
-                        >
+                        <div class="tab" :class="tabIndex === 1 ? 'is-active' : ''" @click="switchToTRate(1)">
                             交易率
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 2 ? 'is-active' : ''"
-                            @click="switchToTSum(2)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 2 ? 'is-active' : ''" @click="switchToTSum(2)">
                             交易量
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 3 ? 'is-active' : ''"
-                            @click="switchToRTime(3)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 3 ? 'is-active' : ''" @click="switchToRTime(3)">
                             响应时间
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 4 ? 'is-active' : ''"
-                            @click="switchToSRate(4)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 4 ? 'is-active' : ''" @click="switchToSRate(4)">
                             成功率
                         </div>
                     </div>
@@ -146,10 +112,7 @@
                             <div class="toobar__switch">
                                 1小时
                                 <div class="switch">
-                                    <dt-switch
-                                        v-model="dataType"
-                                        @input="onSwitchChange"
-                                    ></dt-switch>
+                                    <dt-switch v-model="dataType" @input="onSwitchChange"></dt-switch>
                                 </div>
                                 1天
                             </div>
@@ -204,10 +167,16 @@ const mockData = require('../mock/whapi_old.json');
 console.log(mockData);
 let data = [];
 let now = +new Date();
+
+function getRandomNumberByRange(start, end) {
+    return Math.floor(Math.random() * (end - start) + start);
+}
+
 // let oneDay = 15 * 60000;
 // let value = (Math.random() * 100).toFixed();
 // let day = 24 * 60 * 60000;
-for (let i = 1; i <= 288; i++) {
+for (let i = 1; i <= 60; i++) {
+    console.log(`[${new Date(+now + 60000).getTime()}, ${getRandomNumberByRange(1, 100)}]`);
     data.push(randomData());
 }
 
@@ -224,10 +193,9 @@ function randomData() {
             (Math.random() * 100).toFixed() * 1,
         ],
     };
-    // console.log(res);
     return res;
 }
-
+console.log(data);
 const chartOpt = {
     color: ['#FFEE58'],
     tooltip: {

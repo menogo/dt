@@ -70,3 +70,7 @@ img {
     white-space: nowrap;
     display: block !important;
 }
+
+.error {
+    color: #ff7777 !important;
+}

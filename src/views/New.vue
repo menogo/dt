@@ -4,9 +4,7 @@
             <div class="container__meta">
                 <div class="meta">
                     <div class="meta__status">
-                        <div class="meta__status-title">
-                            {{ dayTopTime || '0000-00-00 00:00:00' }} 更新
-                        </div>
+                        <div class="meta__status-title">{{ dayTopTime || '0000-00-00 00:00:00' }} 更新</div>
                         <div class="meta__status-act" @click="switchToOldVersion">
                             <span class="art-active">新</span>
                             <i class="icon-exchange"></i>
@@ -31,131 +29,117 @@
             </div>
             <div class="container__detail">
                 <section>
-                    <div
-                        class="container__detail-item"
-                        @click="handleQRSCDetailClick(1, qRSCDetail.TARGET_NAME)"
-                    >
+                    <div class="container__detail-item" @click="handleQRSCDetailClick(1, qRSCDetail.title)">
                         <div class="title">
-                            {{ qRSCDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码生成' }}
+                            {{ qRSCDetail.title || '二维码生成' }}
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRSCDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRSCDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRSCDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRSCDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRSCDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRSCDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRSCDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span>
+                                <span class="sumup" :class="qRSCDetail.SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRSCDetail.SUC_RATE || '--' }}
+                                </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRSCDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span>
+                                <span class="sumup" :class="qRSCDetail.S_SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRSCDetail.S_SUC_RATE || '--' }}
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="container__detail-item ml-10"
-                        @click="
-                            handleQRXDDetailClick(2, qRXDDetail.TARGET_NAME.split('武汉地铁')[1])
-                        "
-                    >
+                    <div class="container__detail-item ml-10" @click="handleQRXDDetailClick(2, qRXDDetail.title)">
                         <div class="title">
-                            {{ qRXDDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码下单' }}
+                            {{ qRXDDetail.title || '二维码下单' }}
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRXDDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRXDDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRXDDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRXDDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRXDDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRXDDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRXDDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span>
+                                <span class="sumup" :class="qRXDDetail.SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRXDDetail.SUC_RATE || '--' }}
+                                </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRXDDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span>
+                                <span class="sumup" :class="qRXDDetail.S_SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRXDDetail.S_SUC_RATE || '--' }}
+                                </span>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section>
-                    <div
-                        class="container__detail-item"
-                        @click="
-                            handleQRCXDetailClick(3, qRCXDetail.TARGET_NAME.split('武汉地铁')[1])
-                        "
-                    >
+                    <div class="container__detail-item" @click="handleQRCXDetailClick(3, qRCXDetail.title)">
                         <div class="title">
-                            {{ qRCXDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码查询' }}
+                            {{ qRCXDetail.title || '二维码查询' }}
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRCXDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRCXDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRCXDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRCXDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRCXDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRCXDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRCXDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span>
+                                <span class="sumup" :class="qRCXDetail.SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRCXDetail.SUC_RATE || '--' }}
+                                </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRCXDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span>
+                                <span class="sumup" :class="qRCXDetail.S_SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRCXDetail.S_SUC_RATE || '--' }}
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="container__detail-item ml-10"
-                        @click="
-                            handleQRTHDetailClick(4, qRTHDetail.TARGET_NAME.split('武汉地铁')[1])
-                        "
-                    >
+                    <div class="container__detail-item ml-10" @click="handleQRTHDetailClick(4, qRTHDetail.title)">
                         <div class="title">
-                            {{ qRTHDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码退货' }}
+                            {{ qRTHDetail.title || '二维码退货' }}
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率（笔/分）</span
-                                ><span class="sumup">{{ qRTHDetail.TRADE_NUM || '--' }}</span>
+                                <span class="type">交易率（笔/分）</span><span class="sumup">{{ qRTHDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量（笔）</span
-                                ><span class="sumup">{{ qRTHDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="type">日交易量（笔）</span><span class="sumup">{{ qRTHDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间（ms）</span
-                                ><span class="sumup">{{ qRTHDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="type">响应时间（ms）</span><span class="sumup">{{ qRTHDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率（%）</span
-                                ><span class="sumup">{{ qRTHDetail.SUC_RATE || '--' }}</span>
+                                <span class="type">业务成功率（%）</span>
+                                <span class="sumup" :class="qRTHDetail.SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRTHDetail.SUC_RATE || '--' }}
+                                </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率（%）</span
-                                ><span class="sumup">{{ qRTHDetail.S_SUC_RATE || '--' }}</span>
+                                <span class="type">系统成功率（%）</span>
+                                <span class="sumup" :class="qRTHDetail.S_SUC_RATE < 80 ? 'error' : ''">
+                                    {{ qRTHDetail.S_SUC_RATE || '--' }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -165,32 +149,16 @@
                 <div class="container__chart-title">
                     <div class="chart-title">{{ chartTitle }}</div>
                     <div class="chart-tabs">
-                        <div
-                            class="tab"
-                            :class="tabIndex === 1 ? 'is-active' : ''"
-                            @click="switchToTRate(1)"
-                        >
+                        <div class="tab" :class="tabIndex === 1 ? 'is-active' : ''" @click="switchToTRate(1)">
                             交易率
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 2 ? 'is-active' : ''"
-                            @click="switchToTSum(2)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 2 ? 'is-active' : ''" @click="switchToTSum(2)">
                             交易量
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 3 ? 'is-active' : ''"
-                            @click="switchToRTime(3)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 3 ? 'is-active' : ''" @click="switchToRTime(3)">
                             响应时间
                         </div>
-                        <div
-                            class="tab u-border-left-none"
-                            :class="tabIndex === 4 ? 'is-active' : ''"
-                            @click="switchToSRate(4)"
-                        >
+                        <div class="tab u-border-left-none" :class="tabIndex === 4 ? 'is-active' : ''" @click="switchToSRate(4)">
                             成功率
                         </div>
                     </div>
@@ -211,10 +179,7 @@
                             <div class="toobar__switch">
                                 1小时
                                 <div class="switch">
-                                    <dt-switch
-                                        v-model="dataType"
-                                        @input="onSwitchChange"
-                                    ></dt-switch>
+                                    <dt-switch v-model="dataType" @input="onSwitchChange"></dt-switch>
                                 </div>
                                 1天
                             </div>
@@ -281,6 +246,102 @@ let chartSwiper = '';
 // import API from '@/api';
 const mock = require('../mock/whapi_new.json');
 
+const chartOpt = {
+    color: ['#FFEE58'],
+    tooltip: {
+        trigger: 'axis',
+        backgroundColor: 'rgba(8,18,50,0.80)',
+        textStyle: {
+            fontSize: '10',
+        },
+        axisPointer: {
+            // 去掉移动的指示线
+            type: 'none',
+        },
+    },
+    xAxis: {
+        type: 'time',
+        interval: 10 * 60000,
+        axisLabel: {
+            color: '#92B9D9',
+            fontSize: 10,
+            // 上, 右, 下, 左
+            // padding: [0, 11, 0, 11],
+            // showMinLabel: false,
+            // showMaxLabel: false,
+            align: 'center',
+            // margin: 0,
+            formatter: function(value) {
+                // 格式化成月/日，只在第一个刻度显示年份
+                console.log(value);
+                let date = new Date(value);
+                let h = date.getHours();
+                let m = date.getMinutes();
+
+                if (h <= 9) {
+                    h = '0' + h;
+                }
+
+                if (m <= 9) {
+                    m = '0' + m;
+                }
+
+                let texts = [h, m];
+
+                return texts.join(':');
+            },
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#2A396E',
+            },
+        },
+        axisTick: {
+            show: false,
+            // inside: true,
+        },
+        splitLine: {
+            show: false,
+            lineStyle: {
+                color: ['red'],
+                width: 1,
+                type: 'solid',
+            },
+        },
+    },
+    yAxis: {
+        type: 'value',
+        interval: 25,
+        min: 0,
+        max: 100,
+        axisLabel: {
+            color: '#92B9D9',
+            // margin: 0,
+            // padding: [0, 0, 10, -5],
+            // inside: true,
+            fontSize: 10,
+        },
+        axisLine: {
+            show: false,
+        },
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: ['#2A396E'],
+                width: 1,
+                type: 'solid',
+            },
+        },
+    },
+    grid: {
+        top: '20%',
+        left: '9%',
+        right: '6%',
+        bottom: '15%',
+    },
+    series: [],
+};
+
 export default {
     name: 'Home',
     data() {
@@ -301,94 +362,8 @@ export default {
             dayTopNum: '', // 日历史峰值
             chartTitle: '武汉地铁',
             bullet: '',
-            option: {
-                color: ['#FFEE58'],
-                tooltip: {
-                    trigger: 'axis',
-                    backgroundColor: 'rgba(8,18,50,0.80)',
-                    textStyle: {
-                        fontSize: '10',
-                    },
-                    axisPointer: {
-                        // 去掉移动的指示线
-                        type: 'none',
-                    },
-                },
-                legend: {
-                    data: ['业务', '系统'],
-                    left: 10,
-                    padding: [5, 0, 0, 0],
-                    itemHeight: 5, // 图例的高度
-                    textStyle: {
-                        fontSize: 10,
-                        color: '#fff',
-                    },
-                },
-                xAxis: {
-                    type: 'category',
-                    data: ['12:00', '12:15', '12:30', '12:45', '13:00'],
-                    axisLabel: {
-                        color: '#92B9D9',
-                        fontSize: 10,
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#2A396E',
-                        },
-                    },
-                    axisTick: {
-                        show: false,
-                    },
-                    splitLine: {
-                        show: false,
-                        lineStyle: {
-                            color: ['red'],
-                            width: 1,
-                            type: 'solid',
-                        },
-                    },
-                },
-                yAxis: {
-                    type: 'value',
-                    axisLabel: {
-                        color: '#92B9D9',
-                        margin: 0,
-                        padding: [0, 0, 10, -5],
-                        inside: true,
-                        fontSize: 10,
-                    },
-                    axisLine: {
-                        show: false,
-                    },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: ['#2A396E'],
-                            width: 1,
-                            type: 'solid',
-                        },
-                    },
-                },
-                grid: {
-                    top: '20%',
-                    left: '4%',
-                    right: '4%',
-                    bottom: '15%',
-                },
-                series: [
-                    {
-                        name: '业务',
-                        data: [43, 50, 55, 65, 94],
-                        type: 'line',
-                        smooth: true,
-                        // itemStyle: {
-                        //     normal: {
-                        //         color: '#4e76b5',
-                        //     },
-                        // },
-                    },
-                ],
-            },
+            hChartData: {},
+            dChartData: {},
         };
     },
     components: {
@@ -399,18 +374,88 @@ export default {
         onSwitchChange() {
             // 1、找到当前的 slideIndex
             // 2、根据小时的数据重新画图
-            console.log(this.dataType);
+            let chartTypeData = '';
+
+            if (this.dataType) {
+                chartTypeData = this.dChartData;
+            } else {
+                chartTypeData = this.hChartData;
+            }
+
+            let tabData = [];
+            if (this.tabIndex === 1) {
+                tabData = chartTypeData.chart_trade_rate;
+            }
+
+            if (this.tabIndex === 2) {
+                tabData = chartTypeData.chart_trade_num;
+            }
+
+            if (this.tabIndex === 3) {
+                tabData = chartTypeData.chart_suc_rate;
+            }
+
+            if (this.tabIndex === 4) {
+                this.drawChart(this.slideIndex, {
+                    series: [
+                        {
+                            name: '业务',
+                            symbol: 'none',
+                            data: chartTypeData.chart_res_time[0],
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#FFEE58',
+                                },
+                            },
+                        },
+                        {
+                            name: '系统',
+                            symbol: 'none',
+                            data: chartTypeData.chart_res_time[1],
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#57C5DA',
+                                },
+                            },
+                        },
+                    ],
+                });
+            } else {
+                this.drawChart(this.slideIndex, {
+                    series: [
+                        {
+                            name: '业务',
+                            symbol: 'none',
+                            data: tabData,
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#FFEE58',
+                                },
+                            },
+                        },
+                    ],
+                });
+            }
         },
         // 点击交易率 tab
         switchToTRate(tabIndex) {
             this.tabIndex = tabIndex;
             console.log('current slideIndex: ', this.slideIndex);
             console.log('current tabIndex: ', tabIndex);
+            const chartData = this.dataType ? this.dChartData : this.hChartData;
+
             this.drawChart(this.slideIndex, {
                 series: [
                     {
                         name: '业务',
-                        data: [43, 50, 55, 65, 94],
+                        symbol: 'none',
+                        data: chartData.chart_trade_rate,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -430,11 +475,14 @@ export default {
             // 2.在当前slide下更新折线图
             console.log('current slideIndex: ', this.slideIndex);
             console.log('current tabIndex: ', tabIndex);
+            const chartData = this.dataType ? this.dChartData : this.hChartData;
+
             this.drawChart(this.slideIndex, {
                 series: [
                     {
                         name: '业务',
-                        data: [23, 15, 55, 35, 40],
+                        symbol: 'none',
+                        data: chartData.chart_trade_num,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -451,11 +499,13 @@ export default {
             this.tabIndex = tabIndex;
             console.log('current slideIndex: ', this.slideIndex);
             console.log('current tabIndex: ', tabIndex);
+            const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
                 series: [
                     {
                         name: '业务',
-                        data: [53, 85, 65, 15, 99],
+                        symbol: 'none',
+                        data: chartData.chart_suc_rate,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -472,16 +522,30 @@ export default {
             this.tabIndex = tabIndex;
             console.log('current slideIndex: ', this.slideIndex);
             console.log('current tabIndex: ', tabIndex);
+            const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
                 series: [
                     {
                         name: '业务',
-                        data: [90, 80, 88, 55, 100],
+                        symbol: 'none',
+                        data: chartData.chart_res_time[0],
                         type: 'line',
                         smooth: true,
                         itemStyle: {
                             normal: {
                                 color: '#FFEE58',
+                            },
+                        },
+                    },
+                    {
+                        name: '系统',
+                        symbol: 'none',
+                        data: chartData.chart_res_time[1],
+                        type: 'line',
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                color: '#57C5DA',
                             },
                         },
                     },
@@ -612,7 +676,6 @@ export default {
 
             // 1、根据 slideIndex 来找到相应的详情画图
             // 2、根据 tab 的不同来展示不同的 legend
-
             let el = 'js-chart-total';
             if (index === 1) {
                 el = 'js-chart-qrsc';
@@ -639,16 +702,40 @@ export default {
                         fontSize: '10',
                     },
                     axisPointer: {
-                        // 去掉移动的指示线
-                        type: 'none',
+                        type: 'none', // 去掉移动的指示线
                     },
                 },
                 xAxis: {
-                    type: 'category',
-                    data: ['12:00', '12:15', '12:30', '12:45', '13:00'],
+                    type: 'time',
+                    interval: 10 * 60000,
                     axisLabel: {
                         color: '#92B9D9',
                         fontSize: 10,
+                        // 上, 右, 下, 左
+                        // padding: [0, 11, 0, 11],
+                        // showMinLabel: false,
+                        // showMaxLabel: false,
+                        align: 'center',
+                        // margin: 0,
+                        formatter: function(value) {
+                            // 格式化成月/日，只在第一个刻度显示年份
+                            console.log(value);
+                            let date = new Date(value);
+                            let h = date.getHours();
+                            let m = date.getMinutes();
+
+                            if (h <= 9) {
+                                h = '0' + h;
+                            }
+
+                            if (m <= 9) {
+                                m = '0' + m;
+                            }
+
+                            let texts = [h, m];
+
+                            return texts.join(':');
+                        },
                     },
                     axisLine: {
                         lineStyle: {
@@ -657,6 +744,7 @@ export default {
                     },
                     axisTick: {
                         show: false,
+                        // inside: true,
                     },
                     splitLine: {
                         show: false,
@@ -669,11 +757,14 @@ export default {
                 },
                 yAxis: {
                     type: 'value',
+                    interval: 25,
+                    min: 0,
+                    max: 100,
                     axisLabel: {
                         color: '#92B9D9',
-                        margin: 0,
-                        padding: [0, 0, 10, -5],
-                        inside: true,
+                        // margin: 0,
+                        // padding: [0, 0, 10, -5],
+                        // inside: true,
                         fontSize: 10,
                     },
                     axisLine: {
@@ -690,8 +781,8 @@ export default {
                 },
                 grid: {
                     top: '20%',
-                    left: '4%',
-                    right: '4%',
+                    left: '9%',
+                    right: '6%',
                     bottom: '15%',
                 },
                 series: opt.series || [],
@@ -711,7 +802,7 @@ export default {
             // }
 
             const chart = window.echarts.init(document.getElementById(el));
-            chart.setOption(option);
+            chart.setOption(option, true);
         },
         updateChartTitle(slideIndex) {
             if (slideIndex === 0) {
@@ -734,6 +825,7 @@ export default {
                 return '二维码退货';
             }
         },
+        getCurrentTab() {},
     },
     async mounted() {
         // const res = await this.$axios(
@@ -743,35 +835,62 @@ export default {
         // 二维码生成
         if (res.index_show.PLF35403) {
             this.qRSCDetail = res.index_show.PLF35403;
+            this.qRSCDetail.title = res.index_show.PLF35403.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码下单
         if (res.index_show.PLF35458) {
             this.qRXDDetail = res.index_show.PLF35458;
+            this.qRXDDetail.title = res.index_show.PLF35458.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码查询
         if (res.index_show.PLF35457) {
             this.qRCXDetail = res.index_show.PLF35457;
+            this.qRCXDetail.title = res.index_show.PLF35457.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码退货
         if (res.index_show.PLF35456) {
             this.qRTHDetail = res.index_show.PLF35456;
+            this.qRTHDetail.title = res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
         }
 
-        // this.dayTopTime = dayData.day_top_time;
-        // this.dayTotalTradeRate = dayData.day_total_trade_rate;
-        // this.dayTotalTradeNum = dayData.day_total_trade_num;
+        this.dayTopTime = res.top_show.res_time;
+        this.dayTotalTradeRate = res.top_show.trade_rate;
+        this.dayTotalTradeNum = res.top_show.trade_num;
         // this.dayTotalTime = dayData.day_total_time;
         // this.daySucRate = dayData.day_suc_rate;
         // this.dayTopNum = dayData.day_top_num;
 
+        let hChartData = res.line_show.hour;
+        let dChartData = res.line_show.day;
+        this.dChartData = dChartData;
+        this.hChartData = hChartData;
+        console.log('dChartData', dChartData);
+        console.log('hChartData', hChartData);
+
         const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
         if (this.tabIndex !== 4) {
-            this.option.legend = '';
+            chartOpt.legend = '';
         }
-        totalChart.setOption(this.option);
+
+        chartOpt.series = [
+            {
+                name: '业务',
+                symbol: 'none',
+                data: hChartData.chart_trade_rate,
+                type: 'line',
+                smooth: true,
+                itemStyle: {
+                    normal: {
+                        color: '#FFEE58',
+                    },
+                },
+            },
+        ];
+        console.log(chartOpt);
+        totalChart.setOption(chartOpt);
 
         chartSwiper = new Swiper('.swiper-container', {
             // If we need pagination
@@ -781,6 +900,7 @@ export default {
             },
             loop: true,
         });
+
         const vm = this;
         const chartCC = new Swiper('.swiper-container--copy', {
             on: {
