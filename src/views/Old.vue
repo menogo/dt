@@ -8,7 +8,9 @@
                             {{ dayTopTime || '0000-00-00 00:00:00' }} 更新
                         </div>
                         <div class="meta__status-act" @click="switchToOldVersion">
-                            旧架构 <i class="icon-exchange"></i>
+                            <span class="art-active">旧</span>
+                            <i class="icon-exchange"></i>
+                            <span>新</span>
                         </div>
                     </div>
                     <div class="meta__sum">
@@ -65,8 +67,8 @@
                         @click="handleQRQTDetailClick(2, qRQTDetail.TARGET_NAME)"
                     >
                         <div class="title ellipsis">
-                            <!-- {{ qRQTDetail.TARGET_NAME || '其它' }} -->
-                            其它
+                            <!-- {{ qRQTDetail.TARGET_NAME || '其他' }} -->
+                            其他
                         </div>
                         <div class="list">
                             <div class="item">
@@ -137,18 +139,18 @@
                         <div class="toobar">
                             <div class="toobar__summary">
                                 <span v-show="tabIndex === 1">
-                                    历史峰值：158笔/分（2019-11-11 00:00:01）
+                                    历史峰值：158笔/分(2019-11-11 00:00:01)
                                 </span>
                             </div>
                             <div class="toobar__switch">
-                                小时
+                                1小时
                                 <div class="switch">
                                     <dt-switch
                                         v-model="dataType"
                                         @input="onSwitchChange"
                                     ></dt-switch>
                                 </div>
-                                天
+                                1天
                             </div>
                         </div>
                         <div class="swiper-container--copy">
@@ -198,11 +200,36 @@ import Swiper from 'swiper';
 let chartSwiper = '';
 // import API from '@/api';
 
+let data = [];
+let now = +new Date();
+// let oneDay = 15 * 60000;
+// let value = (Math.random() * 100).toFixed();
+for (let i = 0; i < 60; i++) {
+    data.push(randomData());
+}
+
+function randomData() {
+    now = new Date(+now + 60000);
+    // value = value + Math.random() * 21 - 10;
+    // value = value * 1;
+    let res = {
+        // name: now.toString(),
+        value: [
+            // [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+            now.getTime(),
+            // Math.round(value),
+            (Math.random() * 100).toFixed() * 1,
+        ],
+    };
+    console.log(res);
+    return res;
+}
+
 export default {
     name: 'Home',
     data() {
         return {
-            dataType: true,
+            dataType: false,
             qRCZDetail: {}, // 二维码重置详情
             qRQTDetail: {}, // 二维码其它详情
             chartSwiper: '',
@@ -214,7 +241,7 @@ export default {
             dayTotalTime: '',
             daySucRate: '',
             dayTopNum: '', // 日历史峰值
-            chartTitle: '总览',
+            chartTitle: '武汉地铁',
             bullet: '',
             option: {
                 color: ['#FFEE58'],
@@ -241,7 +268,68 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: ['12:00', '12:15', '12:30', '12:45', '13:00'],
+                    data: [
+                        1201,
+                        1202,
+                        1203,
+                        1204,
+                        1205,
+                        1206,
+                        1207,
+                        1208,
+                        1209,
+                        1210,
+                        1211,
+                        1212,
+                        1213,
+                        1214,
+                        1215,
+                        1216,
+                        1217,
+                        1218,
+                        1219,
+                        1220,
+                        1221,
+                        1222,
+                        1223,
+                        1224,
+                        1225,
+                        1226,
+                        1227,
+                        1228,
+                        1229,
+                        1230,
+                        1231,
+                        1232,
+                        1233,
+                        1234,
+                        1235,
+                        1236,
+                        1237,
+                        1238,
+                        1239,
+                        1240,
+                        1241,
+                        1242,
+                        1243,
+                        1244,
+                        1245,
+                        1246,
+                        1247,
+                        1248,
+                        1249,
+                        1250,
+                        1251,
+                        1252,
+                        1253,
+                        1254,
+                        1255,
+                        1256,
+                        1257,
+                        1258,
+                        1259,
+                        1260,
+                    ],
                     axisLabel: {
                         color: '#92B9D9',
                         fontSize: 10,
@@ -267,9 +355,9 @@ export default {
                     type: 'value',
                     axisLabel: {
                         color: '#92B9D9',
-                        margin: 0,
-                        padding: [0, 0, 10, -5],
-                        inside: true,
+                        // margin: 0,
+                        // padding: [0, 0, 10, -5],
+                        // inside: true,
                         fontSize: 10,
                     },
                     axisLine: {
@@ -286,8 +374,8 @@ export default {
                 },
                 grid: {
                     top: '20%',
-                    left: '4%',
-                    right: '4%',
+                    left: '9%',
+                    right: '8%',
                     bottom: '15%',
                 },
                 series: [
@@ -325,7 +413,8 @@ export default {
                 series: [
                     {
                         name: '业务',
-                        data: [43, 50, 55, 65, 94],
+                        symbol: 'none',
+                        data: data || this.genChart(),
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -349,7 +438,8 @@ export default {
                 series: [
                     {
                         name: '业务',
-                        data: [23, 15, 55, 35, 40],
+                        symbol: 'none',
+                        data: data || this.genChart(),
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -370,7 +460,8 @@ export default {
                 series: [
                     {
                         name: '业务',
-                        data: [53, 85, 65, 15, 99],
+                        symbol: 'none',
+                        data: data || this.genChart(),
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -391,7 +482,7 @@ export default {
                 series: [
                     {
                         name: '业务',
-                        data: [90, 80, 88, 55, 100],
+                        data: data || this.genChart(),
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -501,11 +592,104 @@ export default {
                     },
                 },
                 xAxis: {
-                    type: 'category',
-                    data: ['12:00', '12:15', '12:30', '12:45', '13:00'],
+                    type: 'time',
+                    interval: 15 * 60000,
+                    // data: [
+                    //     1201,
+                    //     1202,
+                    //     1203,
+                    //     1204,
+                    //     1205,
+                    //     1206,
+                    //     1207,
+                    //     1208,
+                    //     1209,
+                    //     1210,
+                    //     1211,
+                    //     1212,
+                    //     1213,
+                    //     1214,
+                    //     1215,
+                    //     1216,
+                    //     1217,
+                    //     1218,
+                    //     1219,
+                    //     1220,
+                    //     1221,
+                    //     1222,
+                    //     1223,
+                    //     1224,
+                    //     1225,
+                    //     1226,
+                    //     1227,
+                    //     1228,
+                    //     1229,
+                    //     1230,
+                    //     1231,
+                    //     1232,
+                    //     1233,
+                    //     1234,
+                    //     1235,
+                    //     1236,
+                    //     1237,
+                    //     1238,
+                    //     1239,
+                    //     1240,
+                    //     1241,
+                    //     1242,
+                    //     1243,
+                    //     1244,
+                    //     1245,
+                    //     1246,
+                    //     1247,
+                    //     1248,
+                    //     1249,
+                    //     1250,
+                    //     1251,
+                    //     1252,
+                    //     1253,
+                    //     1254,
+                    //     1255,
+                    //     1256,
+                    //     1257,
+                    //     1258,
+                    //     1259,
+                    //     1260,
+                    // ],
+                    // boundaryGap: true,
+                    // offset: 10,
+                    // nameLocation: 'end',
+                    // min: function(value) {
+                    //     console.log(value);
+                    //     return value.min - 600000;
+                    // },
+                    // max: function(value) {
+                    //     return value.max + 600000;
+                    // },
                     axisLabel: {
                         color: '#92B9D9',
                         fontSize: 10,
+                        // padding: 0,
+                        // margin: 0,
+                        formatter: function(value) {
+                            // 格式化成月/日，只在第一个刻度显示年份
+                            console.log(value);
+                            let date = new Date(value);
+                            let h = date.getHours();
+                            let m = date.getMinutes();
+
+                            if (h <= 9) {
+                                h = '0' + h;
+                            }
+
+                            if (m <= 9) {
+                                m = '0' + m;
+                            }
+
+                            let texts = [h, m];
+
+                            return texts.join(':');
+                        },
                     },
                     axisLine: {
                         lineStyle: {
@@ -514,6 +698,7 @@ export default {
                     },
                     axisTick: {
                         show: false,
+                        // inside: true,
                     },
                     splitLine: {
                         show: false,
@@ -528,9 +713,9 @@ export default {
                     type: 'value',
                     axisLabel: {
                         color: '#92B9D9',
-                        margin: 0,
-                        padding: [0, 0, 10, -5],
-                        inside: true,
+                        // margin: 0,
+                        // padding: [0, 0, 10, -5],
+                        // inside: true,
                         fontSize: 10,
                     },
                     axisLine: {
@@ -547,8 +732,8 @@ export default {
                 },
                 grid: {
                     top: '20%',
-                    left: '4%',
-                    right: '4%',
+                    left: '9%',
+                    right: '6%',
                     bottom: '15%',
                 },
                 series: opt.series || [],
@@ -592,6 +777,25 @@ export default {
                 return '二维码退货';
             }
         },
+        genChart() {
+            let series = [];
+
+            for (let i = 1; i <= 60; i++) {
+                let item = [];
+
+                if (i <= 9) {
+                    item.push(120 + i);
+                } else {
+                    item.push(12 + i);
+                }
+
+                // item.push(i);
+                item.push((Math.random() * 100).toFixed());
+                series.push(item);
+            }
+            console.log(series);
+            return series;
+        },
     },
     async mounted() {
         const res = await this.$axios(
@@ -621,6 +825,7 @@ export default {
         if (this.tabIndex !== 4) {
             this.option.legend = '';
         }
+        console.log('this.option', this.option);
         totalChart.setOption(this.option);
 
         chartSwiper = new Swiper('.swiper-container', {
@@ -745,6 +950,7 @@ export default {
 
 .meta .meta__status-act .icon-exchange {
     margin-left: 3px;
+    margin-right: 3px;
     position: relative;
     top: -1px;
 }

@@ -8,7 +8,9 @@
                             {{ dayTopTime || '0000-00-00 00:00:00' }} 更新
                         </div>
                         <div class="meta__status-act" @click="switchToOldVersion">
-                            新架构 <i class="icon-exchange"></i>
+                            <span class="art-active">新</span>
+                            <i class="icon-exchange"></i>
+                            <span>旧</span>
                         </div>
                     </div>
                     <div class="meta__sum">
@@ -189,18 +191,18 @@
                         <div class="toobar">
                             <div class="toobar__summary">
                                 <span v-show="tabIndex === 1">
-                                    历史峰值：158笔/分（2019-11-11 00:00:01）
+                                    历史峰值：158笔/分(2019-11-11 00:00:01)
                                 </span>
                             </div>
                             <div class="toobar__switch">
-                                小时
+                                1小时
                                 <div class="switch">
                                     <dt-switch
                                         v-model="dataType"
                                         @input="onSwitchChange"
                                     ></dt-switch>
                                 </div>
-                                天
+                                1天
                             </div>
                         </div>
                         <div class="swiper-container--copy">
@@ -268,7 +270,7 @@ export default {
     name: 'Home',
     data() {
         return {
-            dataType: true,
+            dataType: false,
             qRSCDetail: {}, // 二维码生成详情
             qRXDDetail: {}, // 二维码下单详情
             qRCXDetail: {}, // 二维码查询详情
@@ -282,7 +284,7 @@ export default {
             dayTotalTime: '',
             daySucRate: '',
             dayTopNum: '', // 日历史峰值
-            chartTitle: '总览',
+            chartTitle: '武汉地铁',
             bullet: '',
             option: {
                 color: ['#FFEE58'],
@@ -895,12 +897,17 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #addaff;
 }
 
 .meta .meta__status-act .icon-exchange {
     margin-left: 3px;
     position: relative;
     top: -1px;
+}
+
+.meta .meta__status-act .art-active {
+    color: #ffffff;
 }
 
 .meta__sum {
