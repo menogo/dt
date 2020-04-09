@@ -35,7 +35,9 @@
                         class="container__detail-item"
                         @click="handleQRSCDetailClick(1, qRSCDetail.TARGET_NAME)"
                     >
-                        <div class="title">{{ qRSCDetail.TARGET_NAME || '二维码生成' }}</div>
+                        <div class="title">
+                            {{ qRSCDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码生成' }}
+                        </div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率（笔/分）</span
@@ -61,9 +63,13 @@
                     </div>
                     <div
                         class="container__detail-item ml-10"
-                        @click="handleQRXDDetailClick(2, qRXDDetail.TARGET_NAME)"
+                        @click="
+                            handleQRXDDetailClick(2, qRXDDetail.TARGET_NAME.split('武汉地铁')[1])
+                        "
                     >
-                        <div class="title">{{ qRXDDetail.TARGET_NAME || '二维码下单' }}</div>
+                        <div class="title">
+                            {{ qRXDDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码下单' }}
+                        </div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率（笔/分）</span
@@ -91,9 +97,13 @@
                 <section>
                     <div
                         class="container__detail-item"
-                        @click="handleQRCXDetailClick(3, qRCXDetail.TARGET_NAME)"
+                        @click="
+                            handleQRCXDetailClick(3, qRCXDetail.TARGET_NAME.split('武汉地铁')[1])
+                        "
                     >
-                        <div class="title">{{ qRCXDetail.TARGET_NAME || '二维码查询' }}</div>
+                        <div class="title">
+                            {{ qRCXDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码查询' }}
+                        </div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率（笔/分）</span
@@ -119,9 +129,13 @@
                     </div>
                     <div
                         class="container__detail-item ml-10"
-                        @click="handleQRTHDetailClick(4, qRTHDetail.TARGET_NAME)"
+                        @click="
+                            handleQRTHDetailClick(4, qRTHDetail.TARGET_NAME.split('武汉地铁')[1])
+                        "
                     >
-                        <div class="title">{{ qRTHDetail.TARGET_NAME || '二维码退货' }}</div>
+                        <div class="title">
+                            {{ qRTHDetail.TARGET_NAME.split('武汉地铁')[1] || '二维码退货' }}
+                        </div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率（笔/分）</span
@@ -265,6 +279,7 @@ import DtSwitch from '@/components/switch.vue';
 import Swiper from 'swiper';
 let chartSwiper = '';
 // import API from '@/api';
+const mock = require('../mock/whapi_new.json');
 
 export default {
     name: 'Home',
@@ -721,38 +736,36 @@ export default {
         },
     },
     async mounted() {
-        const res = await this.$axios(
-            'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
-        );
-        const dayData = res.day;
-        dayData.db_data.map(item => {
-            // 二维码生成
-            if (item.TARGET_ID === 'PLF35403') {
-                this.qRSCDetail = item;
-            }
+        // const res = await this.$axios(
+        //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
+        // );
+        const res = mock;
+        // 二维码生成
+        if (res.index_show.PLF35403) {
+            this.qRSCDetail = res.index_show.PLF35403;
+        }
 
-            // 二维码下单
-            if (item.TARGET_ID === 'PLF35458') {
-                this.qRXDDetail = item;
-            }
+        // 二维码下单
+        if (res.index_show.PLF35458) {
+            this.qRXDDetail = res.index_show.PLF35458;
+        }
 
-            // 二维码查询
-            if (item.TARGET_ID === 'PLF35457') {
-                this.qRCXDetail = item;
-            }
+        // 二维码查询
+        if (res.index_show.PLF35457) {
+            this.qRCXDetail = res.index_show.PLF35457;
+        }
 
-            // 二维码退货
-            if (item.TARGET_ID === 'PLF35456') {
-                this.qRTHDetail = item;
-            }
-        });
+        // 二维码退货
+        if (res.index_show.PLF35456) {
+            this.qRTHDetail = res.index_show.PLF35456;
+        }
 
-        this.dayTopTime = dayData.day_top_time;
-        this.dayTotalTradeRate = dayData.day_total_trade_rate;
-        this.dayTotalTradeNum = dayData.day_total_trade_num;
-        this.dayTotalTime = dayData.day_total_time;
-        this.daySucRate = dayData.day_suc_rate;
-        this.dayTopNum = dayData.day_top_num;
+        // this.dayTopTime = dayData.day_top_time;
+        // this.dayTotalTradeRate = dayData.day_total_trade_rate;
+        // this.dayTotalTradeNum = dayData.day_total_trade_num;
+        // this.dayTotalTime = dayData.day_total_time;
+        // this.daySucRate = dayData.day_suc_rate;
+        // this.dayTopNum = dayData.day_top_num;
 
         const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
         if (this.tabIndex !== 4) {

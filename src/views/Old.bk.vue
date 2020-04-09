@@ -200,8 +200,7 @@ import DtSwitch from '@/components/switch.vue';
 import Swiper from 'swiper';
 let chartSwiper = '';
 // import API from '@/api';
-const mockData = require('../mock/whapi_old.json');
-console.log(mockData);
+
 let data = [];
 let now = +new Date();
 // let oneDay = 15 * 60000;
@@ -228,100 +227,6 @@ function randomData() {
     return res;
 }
 
-const chartOpt = {
-    color: ['#FFEE58'],
-    tooltip: {
-        trigger: 'axis',
-        backgroundColor: 'rgba(8,18,50,0.80)',
-        textStyle: {
-            fontSize: '10',
-        },
-        axisPointer: {
-            // 去掉移动的指示线
-            type: 'none',
-        },
-    },
-    xAxis: {
-        type: 'time',
-        interval: (60 * 4 * 60000) / 5,
-        axisLabel: {
-            color: '#92B9D9',
-            fontSize: 10,
-            // 上, 右, 下, 左
-            // padding: [0, 11, 0, 11],
-            // showMinLabel: false,
-            // showMaxLabel: false,
-            align: 'center',
-            // margin: 0,
-            formatter: function(value) {
-                // 格式化成月/日，只在第一个刻度显示年份
-                console.log(value);
-                let date = new Date(value);
-                let h = date.getHours();
-                let m = date.getMinutes();
-
-                if (h <= 9) {
-                    h = '0' + h;
-                }
-
-                if (m <= 9) {
-                    m = '0' + m;
-                }
-
-                let texts = [h, m];
-
-                return texts.join(':');
-            },
-        },
-        axisLine: {
-            lineStyle: {
-                color: '#2A396E',
-            },
-        },
-        axisTick: {
-            show: false,
-            // inside: true,
-        },
-        splitLine: {
-            show: false,
-            lineStyle: {
-                color: ['red'],
-                width: 1,
-                type: 'solid',
-            },
-        },
-    },
-    yAxis: {
-        type: 'value',
-        interval: 25,
-        axisLabel: {
-            color: '#92B9D9',
-            // margin: 0,
-            // padding: [0, 0, 10, -5],
-            // inside: true,
-            fontSize: 10,
-        },
-        axisLine: {
-            show: false,
-        },
-        splitLine: {
-            show: true,
-            lineStyle: {
-                color: ['#2A396E'],
-                width: 1,
-                type: 'solid',
-            },
-        },
-    },
-    grid: {
-        top: '20%',
-        left: '9%',
-        right: '6%',
-        bottom: '15%',
-    },
-    series: [],
-};
-
 export default {
     name: 'Home',
     data() {
@@ -340,6 +245,155 @@ export default {
             dayTopNum: '', // 日历史峰值
             chartTitle: '武汉地铁',
             bullet: '',
+            option: {
+                color: ['#FFEE58'],
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(8,18,50,0.80)',
+                    textStyle: {
+                        fontSize: '10',
+                    },
+                    axisPointer: {
+                        // 去掉移动的指示线
+                        type: 'none',
+                    },
+                },
+                legend: {
+                    data: ['业务', '系统'],
+                    left: 10,
+                    padding: [5, 0, 0, 0],
+                    itemHeight: 5, // 图例的高度
+                    textStyle: {
+                        fontSize: 10,
+                        color: '#fff',
+                    },
+                },
+                xAxis: {
+                    type: 'category',
+                    data: [
+                        1201,
+                        1202,
+                        1203,
+                        1204,
+                        1205,
+                        1206,
+                        1207,
+                        1208,
+                        1209,
+                        1210,
+                        1211,
+                        1212,
+                        1213,
+                        1214,
+                        1215,
+                        1216,
+                        1217,
+                        1218,
+                        1219,
+                        1220,
+                        1221,
+                        1222,
+                        1223,
+                        1224,
+                        1225,
+                        1226,
+                        1227,
+                        1228,
+                        1229,
+                        1230,
+                        1231,
+                        1232,
+                        1233,
+                        1234,
+                        1235,
+                        1236,
+                        1237,
+                        1238,
+                        1239,
+                        1240,
+                        1241,
+                        1242,
+                        1243,
+                        1244,
+                        1245,
+                        1246,
+                        1247,
+                        1248,
+                        1249,
+                        1250,
+                        1251,
+                        1252,
+                        1253,
+                        1254,
+                        1255,
+                        1256,
+                        1257,
+                        1258,
+                        1259,
+                        1260,
+                    ],
+                    axisLabel: {
+                        color: '#92B9D9',
+                        fontSize: 10,
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#2A396E',
+                        },
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: ['red'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        color: '#92B9D9',
+                        // margin: 0,
+                        // padding: [0, 0, 10, -5],
+                        // inside: true,
+                        fontSize: 10,
+                    },
+                    axisLine: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['#2A396E'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
+                },
+                grid: {
+                    top: '20%',
+                    left: '9%',
+                    right: '8%',
+                    bottom: '15%',
+                },
+                series: [
+                    {
+                        name: '业务',
+                        data: [43, 50, 55, 65, 94],
+                        type: 'line',
+                        smooth: true,
+                        // itemStyle: {
+                        //     normal: {
+                        //         color: '#4e76b5',
+                        //     },
+                        // },
+                    },
+                ],
+            },
         };
     },
     components: {
@@ -542,6 +596,16 @@ export default {
                 xAxis: {
                     type: 'time',
                     interval: (60 * 4 * 60000) / 5,
+                    // boundaryGap: true,
+                    // offset: 10,
+                    // nameLocation: 'end',
+                    // min: function(value) {
+                    //     console.log(value);
+                    //     return value.min - 600000;
+                    // },
+                    // max: function(value) {
+                    //     return value.max;
+                    // },
                     axisLabel: {
                         color: '#92B9D9',
                         fontSize: 10,
@@ -679,35 +743,35 @@ export default {
         },
     },
     async mounted() {
-        // const res = await this.$axios(
-        //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
-        // );
+        const res = await this.$axios(
+            'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
+        );
+        const dayData = res.day;
+        dayData.db_data.map(item => {
+            // 二维码充值
+            if (item.TARGET_ID === 'PLF35793') {
+                this.qRCZDetail = item;
+            }
 
-        const res = mockData;
+            // 二维码其它
+            if (item.TARGET_ID === 'PLF35786') {
+                this.qRQTDetail = item;
+            }
+        });
 
-        // 二维码充值
-        if (res.index_show.PLF35793) {
-            this.qRCZDetail = res.index_show.PLF35403;
-        }
-
-        // 二维码其它
-        if (res.index_show.PLF35786) {
-            this.qRCZDetail = res.index_show.PLF35786;
-        }
-
-        // this.dayTopTime = res.day_top_time;
-        // this.dayTotalTradeRate = dayData.day_total_trade_rate;
-        // this.dayTotalTradeNum = dayData.day_total_trade_num;
-        // this.dayTotalTime = dayData.day_total_time;
-        // this.daySucRate = dayData.day_suc_rate;
-        // this.dayTopNum = dayData.day_top_num;
+        this.dayTopTime = dayData.day_top_time;
+        this.dayTotalTradeRate = dayData.day_total_trade_rate;
+        this.dayTotalTradeNum = dayData.day_total_trade_num;
+        this.dayTotalTime = dayData.day_total_time;
+        this.daySucRate = dayData.day_suc_rate;
+        this.dayTopNum = dayData.day_top_num;
 
         const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
         if (this.tabIndex !== 4) {
-            chartOpt.legend = '';
+            this.option.legend = '';
         }
-        console.log('this.option', chartOpt);
-        totalChart.setOption(chartOpt);
+        console.log('this.option', this.option);
+        totalChart.setOption(this.option);
 
         chartSwiper = new Swiper('.swiper-container', {
             // If we need pagination
