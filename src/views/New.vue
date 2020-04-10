@@ -245,6 +245,10 @@ import Swiper from 'swiper';
 let chartSwiper = '';
 // import API from '@/api';
 const mock = require('../mock/whapi_new.json');
+const PLF35403 = require('../mock/PLF35403.json'); // 二维码生成
+const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
+const PLF35457 = require('../mock/PLF35457.json'); // 二维码查询
+const PLF35458 = require('../mock/PLF35458.json'); // 二维码下单
 
 const chartOpt = {
     color: ['#FFEE58'],
@@ -384,15 +388,15 @@ export default {
 
             let tabData = [];
             if (this.tabIndex === 1) {
-                tabData = chartTypeData.chart_trade_rate;
+                tabData = chartTypeData.trade_rate;
             }
 
             if (this.tabIndex === 2) {
-                tabData = chartTypeData.chart_trade_num;
+                tabData = chartTypeData.trade_num;
             }
 
             if (this.tabIndex === 3) {
-                tabData = chartTypeData.chart_suc_rate;
+                tabData = chartTypeData.suc_rate;
             }
 
             if (this.tabIndex === 4) {
@@ -401,7 +405,7 @@ export default {
                         {
                             name: '业务',
                             symbol: 'none',
-                            data: chartTypeData.chart_res_time[0],
+                            data: chartTypeData.res_time[0],
                             type: 'line',
                             smooth: true,
                             itemStyle: {
@@ -413,7 +417,7 @@ export default {
                         {
                             name: '系统',
                             symbol: 'none',
-                            data: chartTypeData.chart_res_time[1],
+                            data: chartTypeData.res_time[1],
                             type: 'line',
                             smooth: true,
                             itemStyle: {
@@ -455,7 +459,7 @@ export default {
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.chart_trade_rate,
+                        data: chartData.trade_rate,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -482,7 +486,7 @@ export default {
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.chart_trade_num,
+                        data: chartData.trade_num,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -505,7 +509,7 @@ export default {
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.chart_suc_rate,
+                        data: chartData.suc_rate,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -528,7 +532,7 @@ export default {
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.chart_res_time[0],
+                        data: chartData.res_time[0],
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -540,7 +544,7 @@ export default {
                     {
                         name: '系统',
                         symbol: 'none',
-                        data: chartData.chart_res_time[1],
+                        data: chartData.res_time[1],
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -554,6 +558,14 @@ export default {
         },
         // 点击二维码生成详情
         handleQRSCDetailClick(slideIndex, chartTitle) {
+            // const res = await this.$axios(
+            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35403',
+            // );
+            const res = PLF35403;
+            let hChartData = res.hour;
+            let dChartData = res.day;
+            this.dChartData = dChartData;
+            this.hChartData = hChartData;
             console.log(slideIndex);
             chartSwiper.slideTo(slideIndex);
             this.chartTitle = chartTitle;
@@ -879,7 +891,7 @@ export default {
             {
                 name: '业务',
                 symbol: 'none',
-                data: hChartData.chart_trade_rate,
+                data: hChartData.trade_rate,
                 type: 'line',
                 smooth: true,
                 itemStyle: {
