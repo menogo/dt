@@ -18,7 +18,7 @@ module.exports = {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'indent': ['error', 4], // 强制使用一致的缩进
-        'max-len': ['error', 120, 2, { ignoreUrls: true }], // 强制行的最大长度
+        'max-len': ['error', 140, 2, { ignoreUrls: true }], // 强制行的最大长度
 
         'no-param-reassign': ['error', { props: false }], // 禁止对函数参数再赋值
         'no-restricted-syntax': 'off', // 禁止使用特定的语法（比如你可以禁止使用 try...catch)
