@@ -13,15 +13,15 @@
                     </div>
                     <div class="meta__sum">
                         <div class="meta__sum-item">
-                            <div class="title">交易率(笔/分)</div>
+                            <div class="title">交易率（笔/分）</div>
                             <div class="num">{{ dayTotalTradeRate || '--' }}</div>
                         </div>
                         <div class="meta__sum-item">
-                            <div class="title">日交易量(笔)</div>
+                            <div class="title">日交易量（笔）</div>
                             <div class="num">{{ dayTotalTradeNum || '--' }}</div>
                         </div>
                         <div class="meta__sum-item">
-                            <div class="title">响应时间(ms)</div>
+                            <div class="title">响应时间（ms）</div>
                             <div class="num">{{ dayTotalTime || '--' }}</div>
                         </div>
                     </div>
@@ -35,25 +35,25 @@
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率(笔/分)</span>
+                                <span class="type">交易率（笔/分）</span>
                                 <span class="sumup">{{ qRSCDetail.TRADE_NUM || '--' }} </span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量(笔)</span>
+                                <span class="type">日交易量（笔）</span>
                                 <span class="sumup">{{ qRSCDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间(ms)</span>
+                                <span class="type">响应时间（ms）</span>
                                 <span class="sumup">{{ qRSCDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率(%)</span>
+                                <span class="type">业务成功率（%）</span>
                                 <span class="sumup" :class="qRSCDetail.SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRSCDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率(%)</span>
+                                <span class="type">系统成功率（%）</span>
                                 <span class="sumup" :class="qRSCDetail.S_SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRSCDetail.S_SUC_RATE || '--' }}
                                 </span>
@@ -66,25 +66,25 @@
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率(笔/分)</span>
+                                <span class="type">交易率（笔/分）</span>
                                 <span class="sumup">{{ qRXDDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量(笔)</span>
+                                <span class="type">日交易量（笔）</span>
                                 <span class="sumup">{{ qRXDDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间(ms)</span>
+                                <span class="type">响应时间（ms）</span>
                                 <span class="sumup">{{ qRXDDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率(%)</span>
+                                <span class="type">业务成功率（%）</span>
                                 <span class="sumup" :class="qRXDDetail.SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRXDDetail.SUC_RATE }}
                                 </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率(%)</span>
+                                <span class="type">系统成功率（%）</span>
                                 <span class="sumup" :class="qRXDDetail.S_SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRXDDetail.S_SUC_RATE || '--' }}
                                 </span>
@@ -99,25 +99,25 @@
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率(笔/分)</span>
+                                <span class="type">交易率（笔/分）</span>
                                 <span class="sumup">{{ qRCXDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量(笔)</span>
+                                <span class="type">日交易量（笔）</span>
                                 <span class="sumup">{{ qRCXDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间(ms)</span>
+                                <span class="type">响应时间（ms）</span>
                                 <span class="sumup">{{ qRCXDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率(%)</span>
+                                <span class="type">业务成功率（%）</span>
                                 <span class="sumup" :class="qRCXDetail.SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRCXDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率(%)</span>
+                                <span class="type">系统成功率（%）</span>
                                 <span class="sumup" :class="qRCXDetail.S_SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRCXDetail.S_SUC_RATE || '--' }}
                                 </span>
@@ -130,25 +130,25 @@
                         </div>
                         <div class="list">
                             <div class="item">
-                                <span class="type">交易率(笔/分)</span>
+                                <span class="type">交易率（笔/分）</span>
                                 <span class="sumup">{{ qRTHDetail.TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">日交易量(笔)</span>
+                                <span class="type">日交易量（笔）</span>
                                 <span class="sumup">{{ qRTHDetail.SUM_TRADE_NUM || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">响应时间(ms)</span>
+                                <span class="type">响应时间（ms）</span>
                                 <span class="sumup">{{ qRTHDetail.RESPONSE_TIME || '--' }}</span>
                             </div>
                             <div class="item">
-                                <span class="type">业务成功率(%)</span>
+                                <span class="type">业务成功率（%）</span>
                                 <span class="sumup" :class="qRTHDetail.SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRTHDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
-                                <span class="type">系统成功率(%)</span>
+                                <span class="type">系统成功率（%）</span>
                                 <span class="sumup" :class="qRTHDetail.S_SUC_RATE <= 80 ? 'error' : ''">
                                     {{ qRTHDetail.S_SUC_RATE || '--' }}
                                 </span>
@@ -184,7 +184,7 @@
                     <section class="toolwrap">
                         <div class="toobar">
                             <div class="toobar__summary">
-                                <span v-show="tabIndex === 1 || tabIndex === 2">
+                                <span v-show="tabIndex === 1">
                                     历史峰值：158笔/分(2019-11-11 00:00:01)
                                 </span>
                             </div>
@@ -217,19 +217,27 @@
                             </div>
                             <div class="swiper-slide">
                                 <!-- index1 二维码生成 -->
-                                <div id="js-chart-qrsc" style="width: 100%; height:180px;"></div>
+                                <div id="js-chart-qrsc" style="width: 100%; height:180px;">
+                                    2
+                                </div>
                             </div>
                             <div class="swiper-slide">
                                 <!-- index2 二维码下单 -->
-                                <div id="js-chart-qrxd" style="width: 100%; height:180px;"></div>
+                                <div id="js-chart-qrxd" style="width: 100%; height:180px;">
+                                    3
+                                </div>
                             </div>
                             <div class="swiper-slide">
                                 <!-- index3 二维码查询 -->
-                                <div id="js-chart-qrcx" style="width: 100%; height:180px;"></div>
+                                <div id="js-chart-qrcx" style="width: 100%; height:180px;">
+                                    4
+                                </div>
                             </div>
                             <div class="swiper-slide">
                                 <!-- index4 二维码退货 -->
-                                <div id="js-chart-qrth" style="width: 100%; height:180px;">sss</div>
+                                <div id="js-chart-qrth" style="width: 100%; height:180px;">
+                                    5
+                                </div>
                             </div>
                         </div>
                         <!-- If we need pagination -->
@@ -250,8 +258,8 @@ let chartSwiper = '';
 // import API from '@/api';
 const mock = require('../mock/whapi_new.json');
 const PLF35403 = require('../mock/PLF35403.json'); // 二维码生成
-const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
-const PLF35457 = require('../mock/PLF35457.json'); // 二维码查询
+// const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
+// const PLF35457 = require('../mock/PLF35457.json'); // 二维码查询
 const PLF35458 = require('../mock/PLF35458.json'); // 二维码下单
 
 const chartOpt = {
@@ -263,6 +271,7 @@ const chartOpt = {
             fontSize: '10',
         },
         axisPointer: {
+            // 去掉移动的指示线
             type: 'none',
         },
     },
@@ -272,9 +281,15 @@ const chartOpt = {
         axisLabel: {
             color: '#92B9D9',
             fontSize: 10,
+            // 上, 右, 下, 左
+            // padding: [0, 11, 0, 11],
+            // showMinLabel: false,
+            // showMaxLabel: false,
             align: 'center',
+            // margin: 0,
             formatter: function(value) {
                 // 格式化成月/日，只在第一个刻度显示年份
+                console.log(value);
                 let date = new Date(value);
                 let h = date.getHours();
                 let m = date.getMinutes();
@@ -299,6 +314,7 @@ const chartOpt = {
         },
         axisTick: {
             show: false,
+            // inside: true,
         },
         splitLine: {
             show: false,
@@ -311,8 +327,14 @@ const chartOpt = {
     },
     yAxis: {
         type: 'value',
+        // interval: 25,
+        // min: 0,
+        // max: 100,
         axisLabel: {
             color: '#92B9D9',
+            // margin: 0,
+            // padding: [0, 0, 10, -5],
+            // inside: true,
             fontSize: 10,
         },
         axisLine: {
@@ -366,14 +388,15 @@ export default {
     methods: {
         // 切换小时/天
         onSwitchChange() {
-            // 默认是小时
-            let chartTypeData = this.hChartData;
+            // 1、找到当前的 slideIndex
+            // 2、根据小时的数据重新画图
+            let chartTypeData = '';
 
-            if (this.dataType === true) {
+            if (this.dataType) {
                 chartTypeData = this.dChartData;
+            } else {
+                chartTypeData = this.hChartData;
             }
-
-            console.log(chartTypeData);
 
             let tabData = [];
             if (this.tabIndex === 1) {
@@ -385,21 +408,16 @@ export default {
             }
 
             if (this.tabIndex === 3) {
-                tabData = chartTypeData.res_time;
+                tabData = chartTypeData.suc_rate;
             }
-
-            console.log('tabData', tabData);
 
             if (this.tabIndex === 4) {
                 this.drawChart(this.slideIndex, {
-                    xAxis: {
-                        interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                    },
                     series: [
                         {
                             name: '业务',
                             symbol: 'none',
-                            data: chartTypeData.suc_rate[0],
+                            data: chartTypeData.res_time[0],
                             type: 'line',
                             smooth: true,
                             itemStyle: {
@@ -411,7 +429,7 @@ export default {
                         {
                             name: '系统',
                             symbol: 'none',
-                            data: chartTypeData.suc_rate[1],
+                            data: chartTypeData.res_time[1],
                             type: 'line',
                             smooth: true,
                             itemStyle: {
@@ -424,9 +442,6 @@ export default {
                 });
             } else {
                 this.drawChart(this.slideIndex, {
-                    xAxis: {
-                        interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                    },
                     series: [
                         {
                             name: '业务',
@@ -452,9 +467,6 @@ export default {
             const chartData = this.dataType ? this.dChartData : this.hChartData;
 
             this.drawChart(this.slideIndex, {
-                xAxis: {
-                    interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                },
                 series: [
                     {
                         name: '业务',
@@ -482,9 +494,6 @@ export default {
             const chartData = this.dataType ? this.dChartData : this.hChartData;
 
             this.drawChart(this.slideIndex, {
-                xAxis: {
-                    interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                },
                 series: [
                     {
                         name: '业务',
@@ -508,14 +517,11 @@ export default {
             console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
-                xAxis: {
-                    interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                },
                 series: [
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.res_time,
+                        data: chartData.suc_rate,
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -534,14 +540,11 @@ export default {
             console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
-                xAxis: {
-                    interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
-                },
                 series: [
                     {
                         name: '业务',
                         symbol: 'none',
-                        data: chartData.suc_rate[0],
+                        data: chartData.res_time[0],
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -553,7 +556,7 @@ export default {
                     {
                         name: '系统',
                         symbol: 'none',
-                        data: chartData.suc_rate[1],
+                        data: chartData.res_time[1],
                         type: 'line',
                         smooth: true,
                         itemStyle: {
@@ -571,23 +574,19 @@ export default {
             //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35403',
             // );
             const res = PLF35403;
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
+            let hChartData = res.hour;
+            let dChartData = res.day;
 
             // 缓存数据
             this.dChartData = dChartData;
             this.hChartData = hChartData;
             this.chartTitle = chartTitle;
             this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
             this.tabIndex = 1;
 
             // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
+            chartSwiper.slideTo(slideIndex + 1);
+            this.updatePaginationActive(slideIndex);
 
             // 小时、天数据
             let chartData = '';
@@ -596,13 +595,13 @@ export default {
             } else {
                 chartData = this.hChartData;
             }
+            console.log(chartData.trade_rate);
 
             // 画图
             this.drawChart(slideIndex, {
                 series: [
                     {
                         name: '业务',
-                        symbol: 'none',
                         data: chartData.trade_rate,
                         type: 'line',
                         smooth: true,
@@ -621,23 +620,19 @@ export default {
             //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35458',
             // );
             const res = PLF35458;
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
+            let hChartData = res.hour;
+            let dChartData = res.day;
 
             // 缓存数据
             this.dChartData = dChartData;
             this.hChartData = hChartData;
             this.chartTitle = chartTitle;
             this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
             this.tabIndex = 1;
 
             // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
+            chartSwiper.slideTo(slideIndex + 1);
+            this.updatePaginationActive(slideIndex);
 
             // 小时、天数据
             let chartData = '';
@@ -646,123 +641,82 @@ export default {
             } else {
                 chartData = this.hChartData;
             }
+            console.log(chartData.trade_rate);
 
-            this.drawChart(slideIndex, {
-                series: [
-                    {
-                        name: '业务',
-                        symbol: 'none',
-                        data: chartData.trade_rate,
-                        type: 'line',
-                        smooth: true,
-                        itemStyle: {
-                            normal: {
-                                color: '#FFEE58',
-                            },
-                        },
-                    },
-                ],
-            });
+            // this.drawChart(slideIndex, {
+            //     series: [
+            //         {
+            //             name: '业务',
+            //             data: chartData.trade_rate,
+            //             type: 'line',
+            //             smooth: true,
+            //             itemStyle: {
+            //                 normal: {
+            //                     color: '#FFEE58',
+            //                 },
+            //             },
+            //         },
+            //     ],
+            // });
         },
         // 点击二维码查询详情
         handleQRCXDetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35457',
-            // );
-            const res = PLF35457;
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
-
-            // 缓存数据
-            this.dChartData = dChartData;
-            this.hChartData = hChartData;
+            console.log(slideIndex);
+            chartSwiper.slideTo(slideIndex + 1);
             this.chartTitle = chartTitle;
             this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
             this.tabIndex = 1;
-
-            // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
-
-            // 小时、天数据
-            let chartData = '';
-            if (this.dataType) {
-                chartData = this.dChartData;
-            } else {
-                chartData = this.hChartData;
-            }
-
-            // 画图
-            this.drawChart(slideIndex, {
-                series: [
-                    {
-                        name: '业务',
-                        symbol: 'none',
-                        data: chartData.trade_rate,
-                        type: 'line',
-                        smooth: true,
-                        itemStyle: {
-                            normal: {
-                                color: '#FFEE58',
-                            },
-                        },
-                    },
-                ],
-            });
+            this.updatePaginationActive(slideIndex);
+            // this.drawChart(slideIndex, {
+            //     series: [
+            //         {
+            //             name: '业务',
+            //             data: [23, 25, 55, 75, 99],
+            //             type: 'line',
+            //             smooth: true,
+            //             itemStyle: {
+            //                 normal: {
+            //                     color: '#FFEE58',
+            //                 },
+            //             },
+            //         },
+            //     ],
+            // });
         },
         // 点击二维码退货详情
         handleQRTHDetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35456',
-            // );
-            const res = PLF35456;
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
-
-            // 缓存数据
-            this.dChartData = dChartData;
-            this.hChartData = hChartData;
+            console.log(slideIndex);
+            chartSwiper.slideTo(slideIndex + 1);
             this.chartTitle = chartTitle;
             this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
             this.tabIndex = 1;
-
-            // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
-
-            // 小时、天数据
-            let chartData = '';
-            if (this.dataType) {
-                chartData = this.dChartData;
-            } else {
-                chartData = this.hChartData;
-            }
-
-            // 画图
-            this.drawChart(slideIndex, {
-                series: [
-                    {
-                        name: '业务',
-                        symbol: 'none',
-                        data: chartData.trade_rate,
-                        type: 'line',
-                        smooth: true,
-                        itemStyle: {
-                            normal: {
-                                color: '#FFEE58',
-                            },
-                        },
-                    },
-                ],
-            });
+            this.updatePaginationActive(slideIndex);
+            // this.drawChart(slideIndex, {
+            //     series: [
+            //         {
+            //             name: '业务',
+            //             data: [43, 50, 55, 65, 94],
+            //             type: 'line',
+            //             smooth: true,
+            //             itemStyle: {
+            //                 normal: {
+            //                     color: '#FFEE58',
+            //                 },
+            //             },
+            //         },
+            //         {
+            //             name: '系统',
+            //             data: [24, 60, 55, 65, 84],
+            //             type: 'line',
+            //             smooth: true,
+            //             itemStyle: {
+            //                 normal: {
+            //                     color: '#57C5DA ',
+            //                 },
+            //             },
+            //         },
+            //     ],
+            // });
         },
         // 切换到旧版
         switchToOldVersion() {
@@ -799,13 +753,7 @@ export default {
                 el = 'js-chart-qrth';
             }
 
-            // 折线图数据
-            // let interval = 10 * 60000;
-            // if (opt.xAxis && opt.xAxis.interval) {
-            //     interval = opt.xAxis.interval;
-            // }
-
-            let options = {
+            let option = {
                 color: ['#FFEE58'],
                 tooltip: {
                     trigger: 'axis',
@@ -814,18 +762,24 @@ export default {
                         fontSize: '10',
                     },
                     axisPointer: {
-                        type: 'none',
+                        type: 'none', // 去掉移动的指示线
                     },
                 },
                 xAxis: {
                     type: 'time',
-                    interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
+                    interval: 10 * 60000,
                     axisLabel: {
                         color: '#92B9D9',
                         fontSize: 10,
+                        // 上, 右, 下, 左
+                        // padding: [0, 11, 0, 11],
+                        // showMinLabel: false,
+                        // showMaxLabel: false,
                         align: 'center',
+                        // margin: 0,
                         formatter: function(value) {
                             // 格式化成月/日，只在第一个刻度显示年份
+                            console.log(value);
                             let date = new Date(value);
                             let h = date.getHours();
                             let m = date.getMinutes();
@@ -850,6 +804,7 @@ export default {
                     },
                     axisTick: {
                         show: false,
+                        // inside: true,
                     },
                     splitLine: {
                         show: false,
@@ -862,8 +817,14 @@ export default {
                 },
                 yAxis: {
                     type: 'value',
+                    // interval: 25,
+                    // min: 0,
+                    // max: 100,
                     axisLabel: {
                         color: '#92B9D9',
+                        // margin: 0,
+                        // padding: [0, 0, 10, -5],
+                        // inside: true,
                         fontSize: 10,
                     },
                     axisLine: {
@@ -887,21 +848,21 @@ export default {
                 series: opt.series || [],
             };
 
-            if (this.tabIndex === 4) {
-                options.legend = {
-                    data: ['业务', '系统'],
-                    left: 10,
-                    padding: [5, 0, 0, 0],
-                    itemHeight: 5,
-                    textStyle: {
-                        fontSize: 10,
-                        color: '#fff',
-                    },
-                };
-            }
+            // if (type === 4) {
+            //     option.legend = {
+            //         data: ['业务', '系统'],
+            //         left: 10,
+            //         padding: [5, 0, 0, 0],
+            //         itemHeight: 5, // 图例的高度
+            //         textStyle: {
+            //             fontSize: 10,
+            //             color: '#fff',
+            //         },
+            //     };
+            // }
 
             const chart = window.echarts.init(document.getElementById(el));
-            chart.setOption(options, true);
+            chart.setOption(option, true);
         },
         updateChartTitle(slideIndex) {
             if (slideIndex === 0) {
@@ -923,74 +884,6 @@ export default {
             if (slideIndex === 4) {
                 return '二维码退货';
             }
-        },
-        parseDayData(res) {
-            let dayObj = {};
-
-            dayObj.trade_rate = [];
-            dayObj.trade_num = [];
-            dayObj.res_time = [];
-            dayObj.suc_rate = [[], []];
-
-            for (let i = 0; i < res.day.time_list.length; i++) {
-                let t = res.day.time_list[i][0];
-
-                let rate = [];
-                rate.push(t, res.day.trade_rate[i]);
-                dayObj.trade_rate.push(rate);
-
-                let num = [];
-                num.push(t, res.day.trade_num[i]);
-                dayObj.trade_num.push(num);
-
-                let time = [];
-                time.push(t, res.day.res_time[i]);
-                dayObj.res_time.push(time);
-
-                let srate0 = [];
-                let srate1 = [];
-                srate0.push(t, res.day.suc_rate[0][i]);
-                srate1.push(t, res.day.suc_rate[1][i]);
-                dayObj.suc_rate[0].push(srate0);
-                dayObj.suc_rate[1].push(srate1);
-            }
-
-            console.log('dayObj', dayObj);
-            return dayObj;
-        },
-        parseHourData(res) {
-            let hourObj = {};
-
-            hourObj.trade_rate = [];
-            hourObj.trade_num = [];
-            hourObj.res_time = [];
-            hourObj.suc_rate = [[], []];
-
-            for (let i = 0; i < res.hour.time_list.length; i++) {
-                let t = res.hour.time_list[i][0];
-
-                let rate = [];
-                rate.push(t, res.hour.trade_rate[i]);
-                hourObj.trade_rate.push(rate);
-
-                let num = [];
-                num.push(t, res.hour.trade_num[i]);
-                hourObj.trade_num.push(num);
-
-                let time = [];
-                time.push(t, res.hour.res_time[i]);
-                hourObj.res_time.push(time);
-
-                let srate0 = [];
-                let srate1 = [];
-                srate0.push(t, res.hour.suc_rate[0][i]);
-                srate1.push(t, res.hour.suc_rate[1][i]);
-                hourObj.suc_rate[0].push(srate0);
-                hourObj.suc_rate[1].push(srate1);
-            }
-
-            console.log('hourObj', hourObj);
-            return hourObj;
         },
     },
     async mounted() {
@@ -1023,10 +916,8 @@ export default {
             this.qRTHDetail.title = res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
         }
 
-        // let hChartData = res.line_show.hour;
-        // let dChartData = res.line_show.day;
-        let hChartData = this.parseHourData(res.line_show);
-        let dChartData = this.parseDayData(res.line_show);
+        let hChartData = res.line_show.hour;
+        let dChartData = res.line_show.day;
         this.dChartData = dChartData;
         this.hChartData = hChartData;
 
@@ -1062,6 +953,7 @@ export default {
                 el: '.swiper-pagination',
                 clickable: true,
             },
+            loop: true,
         });
 
         const vm = this;
@@ -1069,42 +961,35 @@ export default {
             on: {
                 slideNextTransitionEnd() {
                     chartSwiper.slideNext();
-                    let index = chartCC.activeIndex;
-                    vm.chartTitle = vm.updateChartTitle(index);
-
-                    if (index === 1) {
-                        vm.handleQRSCDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 2) {
-                        vm.handleQRXDDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 3) {
-                        vm.handleQRCXDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 4) {
-                        vm.handleQRTHDetailClick(index, vm.chartTitle);
-                    }
+                    console.log(chartCC.activeIndex);
+                    vm.chartTitle = vm.updateChartTitle(chartCC.activeIndex);
                 },
 
                 slidePrevTransitionEnd() {
                     chartSwiper.slidePrev();
-                    let index = chartCC.activeIndex;
-                    vm.chartTitle = vm.updateChartTitle(index);
-
-                    if (index === 1) {
-                        vm.handleQRSCDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 2) {
-                        vm.handleQRXDDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 3) {
-                        vm.handleQRCXDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 4) {
-                        vm.handleQRTHDetailClick(index, vm.chartTitle);
-                    }
+                    vm.chartTitle = vm.updateChartTitle(chartCC.activeIndex);
                 },
             },
+            // Optional parameters
+            // direction: 'vertical',
+            // loop: true,
+
+            // If we need pagination
+            // pagination: {
+            //     el: '.swiper-pagination',
+            //     clickable: true,
+            // },
+
+            // Navigation arrows
+            // navigation: {
+            //   nextEl: '.swiper-button-next',
+            //   prevEl: '.swiper-button-prev',
+            // },
+
+            // And if we need scrollbar
+            // scrollbar: {
+            //   el: '.swiper-scrollbar',
+            // },
         });
 
         window.chart = chartSwiper;
@@ -1204,11 +1089,7 @@ export default {
 }
 
 .meta .meta__status-act .icon-exchange {
-    // margin-left: 3px;
-    // position: relative;
-    // top: -1px;
     margin-left: 3px;
-    margin-right: 3px;
     position: relative;
     top: -1px;
 }
