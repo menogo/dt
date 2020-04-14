@@ -46,14 +46,14 @@
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
-                                <span class="sumup" :class="qRSCDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.SUC_RATE }}
+                                <span class="sumup" :class="qRSCDetail.SUC_RATE > 0 && qRSCDetail.SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRSCDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
-                                <span class="sumup" :class="qRSCDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.S_SUC_RATE }}
+                                <span class="sumup" :class="qRSCDetail.S_SUC_RATE > 0 && qRSCDetail.S_SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRSCDetail.S_SUC_RATE || '--' }}
                                 </span>
                             </div>
                         </div>
@@ -75,14 +75,14 @@
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
-                                <span class="sumup" :class="qRXDDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRXDDetail.SUC_RATE }}
+                                <span class="sumup" :class="qRXDDetail.SUC_RATE > 0 && qRXDDetail.SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRXDDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
-                                <span class="sumup" :class="qRXDDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRXDDetail.S_SUC_RATE }}
+                                <span class="sumup" :class="qRXDDetail.S_SUC_RATE > 0 && qRXDDetail.S_SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRXDDetail.S_SUC_RATE > 0 || '--' }}
                                 </span>
                             </div>
                         </div>
@@ -106,14 +106,14 @@
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
-                                <span class="sumup" :class="qRCXDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.SUC_RATE }}
+                                <span class="sumup" :class="qRCXDetail.SUC_RATE > 0 && qRCXDetail.SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRCXDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
-                                <span class="sumup" :class="qRCXDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.S_SUC_RATE }}
+                                <span class="sumup" :class="qRCXDetail.S_SUC_RATE > 0 && qRCXDetail.S_SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRCXDetail.S_SUC_RATE || '--' }}
                                 </span>
                             </div>
                         </div>
@@ -135,14 +135,14 @@
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
-                                <span class="sumup" :class="qRTHDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.SUC_RATE }}
+                                <span class="sumup" :class="qRTHDetail.SUC_RATE > 0 && qRTHDetail.SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRTHDetail.SUC_RATE || '--' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
-                                <span class="sumup" :class="qRTHDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.S_SUC_RATE }}
+                                <span class="sumup" :class="qRTHDetail.S_SUC_RATE > 0 && qRTHDetail.S_SUC_RATE <= 80 ? 'error' : ''">
+                                    {{ qRTHDetail.S_SUC_RATE || '--' }}
                                 </span>
                             </div>
                         </div>
@@ -176,15 +176,8 @@
                     <section class="toolwrap">
                         <div class="toobar">
                             <div class="toobar__summary">
-                                <span v-show="tabIndex === 1">
-                                    历史峰值：{{ dataType ? dayTopTradeNum : hourTopTradeNum }}笔/分 ({{
-                                        dataType ? dayTopTradeNumTime : hourTopTradeNumTime
-                                    }})
-                                </span>
-                                <span v-show="tabIndex === 2">
-                                    历史峰值：{{ dataType ? dayTopTradeRate : hourTopTradeRate }}笔 ({{
-                                        dataType ? dayTopTradeRateTime : hourTopTradeRateTime
-                                    }})
+                                <span v-show="tabIndex === 1 || tabIndex === 2">
+                                    {{ chartMetaTitle }}
                                 </span>
                             </div>
                             <div class="toobar__switch">
@@ -253,88 +246,6 @@ const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
 const PLF35457 = require('../mock/PLF35457.json'); // 二维码查询
 const PLF35458 = require('../mock/PLF35458.json'); // 二维码下单
 
-const chartOpt = {
-    color: ['#FFEE58'],
-    tooltip: {
-        trigger: 'axis',
-        backgroundColor: 'rgba(8,18,50,0.80)',
-        textStyle: {
-            fontSize: '10',
-        },
-        axisPointer: {
-            type: 'none',
-        },
-    },
-    xAxis: {
-        type: 'time',
-        interval: 10 * 60000,
-        axisLabel: {
-            color: '#92B9D9',
-            fontSize: 10,
-            align: 'center',
-            formatter: function(value) {
-                // 格式化成月/日，只在第一个刻度显示年份
-                let date = new Date(value);
-                let h = date.getHours();
-                let m = date.getMinutes();
-
-                if (h <= 9) {
-                    h = '0' + h;
-                }
-
-                if (m <= 9) {
-                    m = '0' + m;
-                }
-
-                let texts = [h, m];
-
-                return texts.join(':');
-            },
-        },
-        axisLine: {
-            lineStyle: {
-                color: '#2A396E',
-            },
-        },
-        axisTick: {
-            show: false,
-        },
-        splitLine: {
-            show: false,
-            lineStyle: {
-                color: ['red'],
-                width: 1,
-                type: 'solid',
-            },
-        },
-    },
-    yAxis: {
-        type: 'value',
-        axisLabel: {
-            color: '#92B9D9',
-            fontSize: 10,
-        },
-        axisLine: {
-            show: false,
-        },
-        splitLine: {
-            show: true,
-            lineStyle: {
-                color: ['#2A396E'],
-                width: 1,
-                type: 'solid',
-            },
-        },
-    },
-    grid: {
-        top: '20%',
-        left: '9%',
-        right: '6%',
-        bottom: '15%',
-    },
-    series: [],
-};
-
 export default {
     name: 'Home',
     data() {
@@ -365,7 +276,7 @@ export default {
             hourTopTradeRate: 0,
             dayTopTradeRateTime: '',
             dayTopTradeRate: 0,
-            rateTitle: '',
+            chartMetaTitle: '',
         };
     },
     components: {
@@ -408,6 +319,7 @@ export default {
             }
 
             console.log('tabData', tabData);
+            this.concatChartMetaTitle();
 
             if (this.tabIndex === 4) {
                 this.drawChart(this.slideIndex, {
@@ -596,15 +508,7 @@ export default {
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
 
-            this.hourTopTradeNumTime = this.formatDate(res.line_show.hour.top_trade_num_time * 1000);
-            this.hourTopTradeNum = res.line_show.hour.top_trade_num;
-            this.dayTopTradeNumTime = this.formatDate(res.line_show.day.top_trade_num_time * 1000);
-            this.dayTopTradeNum = res.line_show.day.top_trade_num;
-
-            this.hourTopTradeRateTime = this.formatDate(res.line_show.hour.top_trade_rate_time * 1000);
-            this.hourTopTradeRate = res.line_show.hour.top_trade_rate;
-            this.dayTopTradeRateTime = this.formatDate(res.line_show.day.top_trade_rate_time * 1000);
-            this.dayTopTradeRate = res.line_show.day.top_trade_rate;
+            this.handleRateTitle(res);
 
             // 缓存数据
             this.dChartData = dChartData;
@@ -656,6 +560,7 @@ export default {
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
+            this.handleRateTitle(res);
 
             // 缓存数据
             this.dChartData = dChartData;
@@ -704,6 +609,7 @@ export default {
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
+            this.handleRateTitle(res);
 
             // 缓存数据
             this.dChartData = dChartData;
@@ -753,6 +659,7 @@ export default {
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
+            this.handleRateTitle(res);
 
             // 缓存数据
             this.dChartData = dChartData;
@@ -833,7 +740,7 @@ export default {
             // if (opt.xAxis && opt.xAxis.interval) {
             //     interval = opt.xAxis.interval;
             // }
-
+            let vm = this;
             let options = {
                 color: ['#FFEE58'],
                 tooltip: {
@@ -841,9 +748,40 @@ export default {
                     backgroundColor: 'rgba(8,18,50,0.80)',
                     textStyle: {
                         fontSize: '10',
+                        align: 'left',
                     },
                     axisPointer: {
                         type: 'none',
+                    },
+                    formatter(datas) {
+                        let res = '';
+
+                        if (vm.tabIndex === 2) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔';
+                        }
+
+                        if (vm.tabIndex === 1) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔/秒';
+                        }
+
+                        if (vm.tabIndex === 3) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + 'ms';
+                        }
+
+                        if (vm.tabIndex === 4) {
+                            res = datas[0].axisValueLabel + '';
+                            for (var i = 0, l = datas.length; i < l; i++) {
+                                res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
+                            }
+                        }
+
+                        return res;
                     },
                 },
                 xAxis: {
@@ -918,7 +856,7 @@ export default {
 
             if (this.tabIndex === 4) {
                 options.legend = {
-                    data: ['业务', '系统'],
+                    data: ['业务成功率', '系统成功率'],
                     left: 10,
                     padding: [5, 0, 0, 0],
                     itemHeight: 5,
@@ -984,6 +922,7 @@ export default {
                 dayObj.suc_rate[1].push(srate1);
             }
 
+            this.handleRateTitle(res);
             console.log('dayObj', dayObj);
             return dayObj;
         },
@@ -1018,125 +957,301 @@ export default {
                 hourObj.suc_rate[1].push(srate1);
             }
 
+            this.handleRateTitle(res);
+
             console.log('hourObj', hourObj);
             return hourObj;
         },
-    },
-    async mounted() {
-        // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new');
-        const res = mock;
+        handleRateTitle(res) {
+            this.hourTopTradeNumTime = this.formatDate(res.line_show.hour.top_trade_num_time * 1000);
+            this.hourTopTradeNum = res.line_show.hour.top_trade_num;
+            this.dayTopTradeNumTime = this.formatDate(res.line_show.day.top_trade_num_time * 1000);
+            this.dayTopTradeNum = res.line_show.day.top_trade_num;
 
-        // 二维码生成
-        if (res.index_show.PLF35403) {
-            this.qRSCDetail = res.index_show.PLF35403;
-            this.qRSCDetail.title = '二维码生成' || res.index_show.PLF35403.TARGET_NAME.split('武汉地铁')[1];
-        }
+            this.hourTopTradeRateTime = this.formatDate(res.line_show.hour.top_trade_rate_time * 1000);
+            this.hourTopTradeRate = res.line_show.hour.top_trade_rate;
+            this.dayTopTradeRateTime = this.formatDate(res.line_show.day.top_trade_rate_time * 1000);
+            this.dayTopTradeRate = res.line_show.day.top_trade_rate;
 
-        // 二维码下单
-        if (res.index_show.PLF35458) {
-            this.qRXDDetail = res.index_show.PLF35458;
-            this.qRXDDetail.title = '二维码下单' || res.index_show.PLF35458.TARGET_NAME.split('武汉地铁')[1];
-        }
+            this.concatChartMetaTitle();
+        },
+        concatChartMetaTitle() {
+            if (this.dataType === true) {
+                if (this.tabIndex === 1) {
+                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeNum}笔/分 (${this.dayTopTradeNumTime})`;
+                }
 
-        // 二维码查询
-        if (res.index_show.PLF35457) {
-            this.qRCXDetail = res.index_show.PLF35457;
-            this.qRCXDetail.title = '二维码查询' || res.index_show.PLF35457.TARGET_NAME.split('武汉地铁')[1];
-        }
+                if (this.tabIndex === 2) {
+                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeRate}笔 (${this.dayTopTradeRateTime})`;
+                }
+            } else {
+                if (this.tabIndex === 1) {
+                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeNum}笔/分 (${this.hourTopTradeNumTime})`;
+                }
 
-        // 二维码退货
-        if (res.index_show.PLF35456) {
-            this.qRTHDetail = res.index_show.PLF35456;
-            this.qRTHDetail.title = '二维码退货' || res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
-        }
+                if (this.tabIndex === 2) {
+                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeRate}笔 (${this.hourTopTradeRateTime})`;
+                }
+            }
+        },
+        initPage() {
+            const vm = this;
 
-        // let hChartData = res.line_show.hour;
-        // let dChartData = res.line_show.day;
-        let hChartData = this.parseHourData(res);
-        let dChartData = this.parseDayData(res);
-        this.dChartData = dChartData;
-        this.hChartData = hChartData;
+            // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new');
+            const res = mock;
 
-        this.dayTopTime = res.index_show.update_time;
-        this.dayTotalTradeRate = res.top_show.trade_rate;
-        this.dayTotalTradeNum = res.top_show.trade_num;
-        this.dayTotalTime = res.top_show.res_time;
+            const chartOpt = {
+                color: ['#FFEE58'],
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(8,18,50,0.80)',
+                    textStyle: {
+                        fontSize: '10',
+                        align: 'left',
+                    },
+                    axisPointer: {
+                        type: 'none',
+                    },
+                    formatter(datas) {
+                        let res = '';
 
-        const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
-        if (this.tabIndex !== 4) {
-            chartOpt.legend = '';
-        }
+                        if (vm.tabIndex === 2) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔';
+                        }
 
-        chartOpt.series = [
-            {
-                name: '业务',
-                symbol: 'none',
-                data: hChartData.trade_rate,
-                type: 'line',
-                smooth: true,
-                itemStyle: {
-                    normal: {
-                        color: '#FFEE58',
+                        if (vm.tabIndex === 1) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔/秒';
+                        }
+
+                        if (vm.tabIndex === 3) {
+                            res = datas[0].axisValueLabel + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + 'ms';
+                        }
+
+                        if (vm.tabIndex === 4) {
+                            res = datas[0].axisValueLabel + '';
+                            for (var i = 0, l = datas.length; i < l; i++) {
+                                res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
+                            }
+                        }
+
+                        return res;
                     },
                 },
-            },
-        ];
-        console.log(chartOpt);
-        totalChart.setOption(chartOpt);
+                xAxis: {
+                    type: 'time',
+                    interval: 10 * 60000,
+                    axisLabel: {
+                        color: '#92B9D9',
+                        fontSize: 10,
+                        align: 'center',
+                        formatter: function(value) {
+                            // 格式化成月/日，只在第一个刻度显示年份
+                            let date = new Date(value);
+                            let h = date.getHours();
+                            let m = date.getMinutes();
 
-        chartSwiper = new Swiper('.swiper-container', {
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
+                            if (h <= 9) {
+                                h = '0' + h;
+                            }
 
-        const vm = this;
-        const chartCC = new Swiper('.swiper-container--copy', {
-            on: {
-                slideNextTransitionEnd() {
-                    chartSwiper.slideNext();
-                    let index = chartCC.activeIndex;
-                    vm.chartTitle = vm.updateChartTitle(index);
+                            if (m <= 9) {
+                                m = '0' + m;
+                            }
 
-                    if (index === 1) {
-                        vm.handleQRSCDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 2) {
-                        vm.handleQRXDDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 3) {
-                        vm.handleQRCXDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 4) {
-                        vm.handleQRTHDetailClick(index, vm.chartTitle);
-                    }
+                            let texts = [h, m];
+
+                            return texts.join(':');
+                        },
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#2A396E',
+                        },
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: ['red'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
                 },
-
-                slidePrevTransitionEnd() {
-                    chartSwiper.slidePrev();
-                    let index = chartCC.activeIndex;
-                    vm.chartTitle = vm.updateChartTitle(index);
-
-                    if (index === 1) {
-                        vm.handleQRSCDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 2) {
-                        vm.handleQRXDDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 3) {
-                        vm.handleQRCXDetailClick(index, vm.chartTitle);
-                    }
-                    if (index === 4) {
-                        vm.handleQRTHDetailClick(index, vm.chartTitle);
-                    }
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        color: '#92B9D9',
+                        fontSize: 10,
+                    },
+                    axisLine: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: ['#2A396E'],
+                            width: 1,
+                            type: 'solid',
+                        },
+                    },
                 },
-            },
-        });
+                grid: {
+                    top: '20%',
+                    left: '9%',
+                    right: '6%',
+                    bottom: '15%',
+                },
+                series: [],
+            };
 
-        window.chart = chartSwiper;
-        this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
+            // 二维码生成
+            if (res.index_show.PLF35403) {
+                this.qRSCDetail = res.index_show.PLF35403;
+                this.qRSCDetail.title = '二维码生成' || res.index_show.PLF35403.TARGET_NAME.split('武汉地铁')[1];
+            }
+
+            // 二维码下单
+            if (res.index_show.PLF35458) {
+                this.qRXDDetail = res.index_show.PLF35458;
+                this.qRXDDetail.title = '二维码下单' || res.index_show.PLF35458.TARGET_NAME.split('武汉地铁')[1];
+            }
+
+            // 二维码查询
+            if (res.index_show.PLF35457) {
+                this.qRCXDetail = res.index_show.PLF35457;
+                this.qRCXDetail.title = '二维码查询' || res.index_show.PLF35457.TARGET_NAME.split('武汉地铁')[1];
+            }
+
+            // 二维码退货
+            if (res.index_show.PLF35456) {
+                this.qRTHDetail = res.index_show.PLF35456;
+                this.qRTHDetail.title = '二维码退货' || res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
+            }
+
+            // let hChartData = res.line_show.hour;
+            // let dChartData = res.line_show.day;
+            let hChartData = this.parseHourData(res);
+            let dChartData = this.parseDayData(res);
+            this.dChartData = dChartData;
+            this.hChartData = hChartData;
+
+            this.dayTopTime = this.formatDate(new Date(res.index_show.update_time).getTime());
+            this.dayTotalTradeRate = res.top_show.trade_rate;
+            this.dayTotalTradeNum = res.top_show.trade_num;
+            this.dayTotalTime = res.top_show.res_time;
+
+            const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
+            if (this.tabIndex !== 4) {
+                chartOpt.legend = '';
+            }
+
+            chartOpt.series = [
+                {
+                    name: '业务',
+                    symbol: 'none',
+                    data: hChartData.trade_rate,
+                    type: 'line',
+                    smooth: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#FFEE58',
+                        },
+                    },
+                },
+            ];
+            console.log(chartOpt);
+            totalChart.setOption(chartOpt);
+
+            chartSwiper = new Swiper('.swiper-container', {
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    slideChange() {
+                        let index = this.activeIndex;
+                        vm.chartTitle = vm.updateChartTitle(index);
+                        chartSwiper.slideTo(index);
+
+                        if (index === 1) {
+                            vm.handleQRSCDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 2) {
+                            vm.handleQRXDDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 3) {
+                            vm.handleQRCXDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 4) {
+                            vm.handleQRTHDetailClick(index, vm.chartTitle);
+                        }
+                        console.log('改变了，activeIndex为' + this.activeIndex);
+                    },
+                },
+            });
+
+            const chartCC = new Swiper('.swiper-container--copy', {
+                on: {
+                    slideNextTransitionEnd() {
+                        chartSwiper.slideNext();
+                        let index = chartCC.activeIndex;
+                        vm.chartTitle = vm.updateChartTitle(index);
+
+                        if (index === 1) {
+                            vm.handleQRSCDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 2) {
+                            vm.handleQRXDDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 3) {
+                            vm.handleQRCXDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 4) {
+                            vm.handleQRTHDetailClick(index, vm.chartTitle);
+                        }
+                    },
+
+                    slidePrevTransitionEnd() {
+                        chartSwiper.slidePrev();
+                        let index = chartCC.activeIndex;
+                        vm.chartTitle = vm.updateChartTitle(index);
+
+                        if (index === 1) {
+                            vm.handleQRSCDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 2) {
+                            vm.handleQRXDDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 3) {
+                            vm.handleQRCXDetailClick(index, vm.chartTitle);
+                        }
+                        if (index === 4) {
+                            vm.handleQRTHDetailClick(index, vm.chartTitle);
+                        }
+                    },
+                },
+            });
+
+            window.chart = chartSwiper;
+            this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
+        },
+    },
+    async mounted() {
+        this.initPage();
+
+        setInterval(() => {
+            this.initPage();
+        }, 50000);
     },
 };
 </script>
