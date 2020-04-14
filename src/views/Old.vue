@@ -174,7 +174,7 @@ import DtSwitch from '@/components/switch.vue';
 import Swiper from 'swiper';
 let chartSwiper = '';
 //import API from '@/api';
-const mock = require('../mock/whapi_old.json');
+const mock = require('../mock/api_old.json');
 const PLF35793 = require('../mock/PLF35793.json'); // 充值
 const PLF35786 = require('../mock/PLF35786.json'); // 其他
 
@@ -182,6 +182,7 @@ export default {
     name: 'Home',
     data() {
         return {
+            apiRes: {},
             dataType: false,
             qRSCZetail: {}, // 二维码生成详情
             qRQTDetail: {}, // 二维码下单详情
@@ -233,7 +234,7 @@ export default {
                 chartTypeData = this.dChartData;
             }
 
-            console.log(chartTypeData);
+            // console.log(chartTypeData);
 
             let tabData = [];
             if (this.tabIndex === 1) {
@@ -248,7 +249,7 @@ export default {
                 tabData = chartTypeData.res_time;
             }
 
-            console.log('tabData', tabData);
+            // console.log('tabData', tabData);
             this.concatChartMetaTitle();
 
             if (this.tabIndex === 4) {
@@ -259,7 +260,8 @@ export default {
                     series: [
                         {
                             name: '业务成功率',
-                            symbol: 'none',
+                            // symbol: 'none',
+                            showSymbol: false,
                             data: chartTypeData.suc_rate[0],
                             type: 'line',
                             smooth: true,
@@ -271,7 +273,8 @@ export default {
                         },
                         {
                             name: '系统成功率',
-                            symbol: 'none',
+                            // symbol: 'none',
+                            showSymbol: false,
                             data: chartTypeData.suc_rate[1],
                             type: 'line',
                             smooth: true,
@@ -291,7 +294,8 @@ export default {
                     series: [
                         {
                             name: '业务',
-                            symbol: 'none',
+                            // symbol: 'none',
+                            showSymbol: false,
                             data: tabData,
                             type: 'line',
                             smooth: true,
@@ -308,8 +312,8 @@ export default {
         // 点击交易率 tab
         switchToTRate(tabIndex) {
             this.tabIndex = tabIndex;
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
 
             this.drawChart(this.slideIndex, {
@@ -319,7 +323,8 @@ export default {
                 series: [
                     {
                         name: '交易率',
-                        symbol: 'none',
+                        // symbol: 'none',
+                        showSymbol: false,
                         data: chartData.trade_rate,
                         type: 'line',
                         smooth: true,
@@ -338,8 +343,8 @@ export default {
 
             // 1.检查当前是在哪个详情/slide
             // 2.在当前slide下更新折线图
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
 
             this.drawChart(this.slideIndex, {
@@ -349,7 +354,8 @@ export default {
                 series: [
                     {
                         name: '交易量',
-                        symbol: 'none',
+                        // symbol: 'none',
+                        showSymbol: false,
                         data: chartData.trade_num,
                         type: 'line',
                         smooth: true,
@@ -365,8 +371,8 @@ export default {
         // 点击响应时间 tab
         switchToRTime(tabIndex) {
             this.tabIndex = tabIndex;
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
                 xAxis: {
@@ -375,7 +381,8 @@ export default {
                 series: [
                     {
                         name: '响应时间',
-                        symbol: 'none',
+                        // symbol: 'none',
+                        showSymbol: false,
                         data: chartData.res_time,
                         type: 'line',
                         smooth: true,
@@ -391,8 +398,8 @@ export default {
         // 点击成功率 tab
         switchToSRate(tabIndex) {
             this.tabIndex = tabIndex;
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.drawChart(this.slideIndex, {
                 xAxis: {
@@ -401,7 +408,8 @@ export default {
                 series: [
                     {
                         name: '业务成功率',
-                        symbol: 'none',
+                        // symbol: 'none',
+                        showSymbol: false,
                         data: chartData.suc_rate[0],
                         type: 'line',
                         smooth: true,
@@ -413,7 +421,8 @@ export default {
                     },
                     {
                         name: '系统成功率',
-                        symbol: 'none',
+                        // symbol: 'none',
+                        showSymbol: false,
                         data: chartData.suc_rate[1],
                         type: 'line',
                         smooth: true,
@@ -430,109 +439,18 @@ export default {
         async handleQRSCZetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35793');
             const res = PLF35793;
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
-
-            // 缓存数据
-            this.dChartData = dChartData;
-            this.hChartData = hChartData;
-            this.chartTitle = chartTitle;
-            this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
-            this.tabIndex = 1;
-
-            // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
-
-            // 小时、天数据
-            let chartData = '';
-            if (this.dataType) {
-                chartData = this.dChartData;
-            } else {
-                chartData = this.hChartData;
-            }
-
-            // 画图
-            this.drawChart(slideIndex, {
-                series: [
-                    {
-                        name: '业务',
-                        symbol: 'none',
-                        data: chartData.trade_rate,
-                        type: 'line',
-                        smooth: true,
-                        itemStyle: {
-                            normal: {
-                                color: '#FFEE58',
-                            },
-                        },
-                    },
-                ],
-            });
+            this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击其他详情
         async handleQRQTDetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35786');
             const res = PLF35786;
-
-            // let hChartData = res.hour;
-            // let dChartData = res.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
-
-            // 缓存数据
-            this.dChartData = dChartData;
-            this.hChartData = hChartData;
-            this.chartTitle = chartTitle;
-            this.slideIndex = slideIndex;
-
-            // 重置 tab 为交易率
-            this.tabIndex = 1;
-
-            // 切换slider
-            console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
-
-            // 小时、天数据
-            let chartData = '';
-            if (this.dataType) {
-                chartData = this.dChartData;
-            } else {
-                chartData = this.hChartData;
-            }
-
-            this.drawChart(slideIndex, {
-                series: [
-                    {
-                        name: '业务',
-                        symbol: 'none',
-                        data: chartData.trade_rate,
-                        type: 'line',
-                        smooth: true,
-                        itemStyle: {
-                            normal: {
-                                color: '#FFEE58',
-                            },
-                        },
-                    },
-                ],
-            });
+            this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 切换到旧版
         switchToOldVersion() {
             chartSwiper.slideTo(0);
             this.$router.replace('/');
-        },
-        // 修改pagination状态
-        updatePaginationActive(index) {
-            this.bullet.forEach(item => {
-                item.classList.remove('swiper-pagination-bullet-active');
-            });
-            this.bullet[index].classList.add('swiper-pagination-bullet-active');
         },
         // 画图
         drawChart(index = 0, opt = {}) {
@@ -549,6 +467,7 @@ export default {
                 el = 'js-chart-qrqt';
             }
 
+            let vm = this;
             let options = {
                 color: ['#FFEE58'],
                 tooltip: {
@@ -556,9 +475,40 @@ export default {
                     backgroundColor: 'rgba(8,18,50,0.80)',
                     textStyle: {
                         fontSize: '10',
+                        align: 'left',
                     },
                     axisPointer: {
                         type: 'none',
+                    },
+                    formatter(datas) {
+                        let res = '';
+
+                        if (vm.tabIndex === 1) {
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔/秒';
+                        }
+
+                        if (vm.tabIndex === 2) {
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔';
+                        }
+
+                        if (vm.tabIndex === 3) {
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + 'ms';
+                        }
+
+                        if (vm.tabIndex === 4) {
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+                            for (var i = 0, l = datas.length; i < l; i++) {
+                                res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
+                            }
+                        }
+
+                        return res;
                     },
                 },
                 xAxis: {
@@ -623,8 +573,9 @@ export default {
                     },
                 },
                 grid: {
+                    containLabel: true,
                     top: '20%',
-                    left: '9%',
+                    left: '3%',
                     right: '6%',
                     bottom: '15%',
                 },
@@ -646,6 +597,105 @@ export default {
 
             const chart = window.echarts.init(document.getElementById(el));
             chart.setOption(options, true);
+        },
+        // 切换详情重新换图
+        reDrawChart(slideIndex, chartTitle, res) {
+            let hChartData = this.parseHourData(res);
+            let dChartData = this.parseDayData(res);
+
+            this.handleRateTitle(res);
+
+            // 缓存数据
+            this.dChartData = dChartData;
+            this.hChartData = hChartData;
+            this.chartTitle = chartTitle;
+            this.slideIndex = slideIndex;
+
+            // 重置 tab 为交易率
+            // this.tabIndex = 1;
+
+            // 切换slider
+            // console.log('slideIndex', slideIndex);
+            chartSwiper.slideTo(slideIndex);
+
+            // 小时、天数据
+            let chartData = '';
+            if (this.dataType) {
+                chartData = this.dChartData;
+            } else {
+                chartData = this.hChartData;
+            }
+
+            // 重新渲染当前 tab 折线图
+            let tabData = [];
+            if (this.tabIndex === 1) {
+                tabData = chartData.trade_rate;
+            }
+
+            if (this.tabIndex === 2) {
+                tabData = chartData.trade_num;
+            }
+
+            if (this.tabIndex === 3) {
+                tabData = chartData.res_time;
+            }
+
+            if (this.tabIndex === 4) {
+                this.drawChart(this.slideIndex, {
+                    xAxis: {
+                        interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
+                    },
+                    series: [
+                        {
+                            name: '业务成功率',
+                            // symbol: 'none',
+                            showSymbol: false,
+                            data: chartData.suc_rate[0],
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#FFEE58',
+                                },
+                            },
+                        },
+                        {
+                            name: '系统成功率',
+                            // symbol: 'none',
+                            showSymbol: false,
+                            data: chartData.suc_rate[1],
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#57C5DA',
+                                },
+                            },
+                        },
+                    ],
+                });
+            } else {
+                this.drawChart(this.slideIndex, {
+                    xAxis: {
+                        interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
+                    },
+                    series: [
+                        {
+                            name: '业务',
+                            // symbol: 'none',
+                            showSymbol: false,
+                            data: tabData,
+                            type: 'line',
+                            smooth: true,
+                            itemStyle: {
+                                normal: {
+                                    color: '#FFEE58',
+                                },
+                            },
+                        },
+                    ],
+                });
+            }
         },
         updateChartTitle(slideIndex) {
             if (slideIndex === 0) {
@@ -669,7 +719,7 @@ export default {
             dayObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.day.time_list.length; i++) {
-                let t = res.line_show.day.time_list[i][0];
+                let t = res.line_show.day.time_list[i][0] * 1000;
 
                 let rate = [];
                 rate.push(t, res.line_show.day.trade_rate[i]);
@@ -693,7 +743,7 @@ export default {
 
             this.handleRateTitle(res);
 
-            console.log('dayObj', dayObj);
+            // console.log('dayObj', dayObj);
             return dayObj;
         },
         parseHourData(res) {
@@ -705,7 +755,7 @@ export default {
             hourObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
-                let t = res.line_show.hour.time_list[i][0];
+                let t = res.line_show.hour.time_list[i][0] * 1000;
 
                 let rate = [];
                 rate.push(t, res.line_show.hour.trade_rate[i]);
@@ -728,7 +778,7 @@ export default {
             }
 
             this.handleRateTitle(res);
-            console.log('hourObj', hourObj);
+            // console.log('hourObj', hourObj);
             return hourObj;
         },
         handleRateTitle(res) {
@@ -768,6 +818,7 @@ export default {
 
             // / const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old');
             const res = mock;
+            this.apiRes = res;
 
             const chartOpt = {
                 color: ['#FFEE58'],
@@ -784,26 +835,26 @@ export default {
                     formatter(datas) {
                         let res = '';
 
-                        if (vm.tabIndex === 2) {
-                            res = datas[0].axisValueLabel + '<br/>';
-                            res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔';
-                        }
-
                         if (vm.tabIndex === 1) {
-                            res = datas[0].axisValueLabel + '<br/>';
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             res += datas[0].seriesName + ': ';
                             res += datas[0].data[1] + '笔/秒';
                         }
 
+                        if (vm.tabIndex === 2) {
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+                            res += datas[0].seriesName + ': ';
+                            res += datas[0].data[1] + '笔';
+                        }
+
                         if (vm.tabIndex === 3) {
-                            res = datas[0].axisValueLabel + '<br/>';
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             res += datas[0].seriesName + ': ';
                             res += datas[0].data[1] + 'ms';
                         }
 
                         if (vm.tabIndex === 4) {
-                            res = datas[0].axisValueLabel + '';
+                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             for (var i = 0, l = datas.length; i < l; i++) {
                                 res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
                             }
@@ -874,8 +925,9 @@ export default {
                     },
                 },
                 grid: {
+                    containLabel: true,
                     top: '20%',
-                    left: '9%',
+                    left: '3%',
                     right: '6%',
                     bottom: '15%',
                 },
@@ -883,28 +935,28 @@ export default {
             };
 
             // 充值
-            if (res.index_show.PLF35793) {
-                this.qRSCZetail = res.index_show.PLF35793;
-                this.qRSCZetail.title = '充值' || res.index_show.PLF35793.TARGET_NAME.split('武汉地铁')[1];
+            if (res.PLF35793) {
+                this.qRSCZetail = res.PLF35793.meta;
+                this.qRSCZetail.title = '充值';
             }
 
             // 其他
-            if (res.index_show.PLF35786) {
-                this.qRQTDetail = res.index_show.PLF35786;
-                this.qRQTDetail.title = '其它' || res.index_show.PLF35786.TARGET_NAME.split('武汉地铁')[1];
+            if (res.PLF35786) {
+                this.qRQTDetail = res.PLF35786.meta;
+                this.qRQTDetail.title = '其它';
             }
 
             // let hChartData = res.line_show.hour;
             // let dChartData = res.line_show.day;
-            let hChartData = this.parseHourData(res);
-            let dChartData = this.parseDayData(res);
+            let hChartData = this.parseHourData(res.TOTAL);
+            let dChartData = this.parseDayData(res.TOTAL);
             this.dChartData = dChartData;
             this.hChartData = hChartData;
 
-            this.dayTopTime = this.formatDate(new Date(res.index_show.update_time).getTime());
-            this.dayTotalTradeRate = res.top_show.trade_rate;
-            this.dayTotalTradeNum = res.top_show.trade_num;
-            this.dayTotalTime = res.top_show.res_time;
+            this.dayTopTime = this.formatDate(new Date(res.TOTAL.update_time).getTime());
+            this.dayTotalTradeRate = res.TOTAL.top_show.trade_rate;
+            this.dayTotalTradeNum = res.TOTAL.top_show.trade_num;
+            this.dayTotalTime = res.TOTAL.top_show.res_time;
 
             const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
             if (this.tabIndex !== 4) {
@@ -914,7 +966,8 @@ export default {
             chartOpt.series = [
                 {
                     name: '业务',
-                    symbol: 'none',
+                    // symbol: 'none',
+                    showSymbol: false,
                     data: hChartData.trade_rate,
                     type: 'line',
                     smooth: true,
@@ -925,7 +978,7 @@ export default {
                     },
                 },
             ];
-            console.log(chartOpt);
+            // console.log(chartOpt);
             totalChart.setOption(chartOpt);
 
             chartSwiper = new Swiper('.swiper-container', {
@@ -946,7 +999,7 @@ export default {
                         if (index === 2) {
                             vm.handleQRQTDetailClick(index, vm.chartTitle);
                         }
-                        console.log('改变了，activeIndex为' + this.activeIndex);
+                        // console.log('改变了，activeIndex为' + this.activeIndex);
                     },
                 },
             });
@@ -1179,6 +1232,7 @@ export default {
     width: 100%;
     width: 100vw;
     position: relative;
+    padding-bottom: 20px;
 }
 
 .swiper-container {

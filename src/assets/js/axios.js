@@ -4,7 +4,7 @@ import qs from 'qs';
 
 // const Error_Network = '网络繁忙，请稍后再试！';
 // const Error_404 = '找不到你要访问的资源！';
-let Loading = '';
+// let Loading = '';
 
 // 创建axios实例
 const Axios = axios.create({
@@ -72,9 +72,9 @@ Axios.interceptors.request.use(
         // 发送请求之前，要做的业务
         // console.log('Logs::axios.config', config);
 
-        if (config && config.loading !== false) {
-            Loading = window.weui.loading('加载中');
-        }
+        // if (config && config.loading !== false) {
+        //     Loading = window.weui.loading('加载中');
+        // }
 
         // 登录流程控制中，根据本地是否存在token判断用户的登录情况
         // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
@@ -107,7 +107,7 @@ Axios.interceptors.response.use(
         // 数据响应之后，要做的业务
 
         // hide loading
-        Loading.hide();
+        // Loading.hide();
 
         // 错误提示(前提是接口跑通了，只是对里边某些值做下详细判断。要先跟后台商定好，对某个固定的字段进行判断，并且确定固定字段来承接 错误信息，方便展示)
         // if (response.data && response.data.status !== 'success') {

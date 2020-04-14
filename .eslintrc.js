@@ -17,6 +17,8 @@ module.exports = {
     rules: {
         // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-console': 'off',
+        'no-debugger': 'off',
         'indent': ['error', 4], // 强制使用一致的缩进
         'max-len': ['error', 140, 2, { ignoreUrls: true }], // 强制行的最大长度
 
