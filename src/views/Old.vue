@@ -173,10 +173,10 @@ import DtSwitch from '@/components/switch.vue';
 
 import Swiper from 'swiper';
 let chartSwiper = '';
-// import API from '@/api';
-const mock = require('../mock/whapi_old.json');
-const PLF35441 = require('../mock/PLF35441.json'); // 充值
-const PLF35442 = require('../mock/PLF35442.json'); // 其他
+//import API from '@/api';
+// const mock = require('../mock/whapi_old.json');
+// const PLF35793 = require('../mock/PLF35793.json'); // 充值
+// const PLF35786 = require('../mock/PLF35786.json'); // 其他
 
 const chartOpt = {
     color: ['#FFEE58'],
@@ -379,7 +379,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '交易率',
                         symbol: 'none',
                         data: chartData.trade_rate,
                         type: 'line',
@@ -409,7 +409,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '交易量',
                         symbol: 'none',
                         data: chartData.trade_num,
                         type: 'line',
@@ -435,7 +435,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '响应时间',
                         symbol: 'none',
                         data: chartData.res_time,
                         type: 'line',
@@ -461,7 +461,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '业务成功率',
                         symbol: 'none',
                         data: chartData.suc_rate[0],
                         type: 'line',
@@ -473,7 +473,7 @@ export default {
                         },
                     },
                     {
-                        name: '系统',
+                        name: '系统成功率',
                         symbol: 'none',
                         data: chartData.suc_rate[1],
                         type: 'line',
@@ -488,11 +488,11 @@ export default {
             });
         },
         // 点击充值详情
-        handleQRSCZetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35441',
-            // );
-            const res = PLF35441;
+        async handleQRSCZetailClick(slideIndex, chartTitle) {
+            const res = await this.$axios(
+                'http://zxerrm.natappfree.cc/whdt_old/PLF35793',
+            );
+            //const res = PLF35793;
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
@@ -538,11 +538,12 @@ export default {
             });
         },
         // 点击其他详情
-        handleQRQTDetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35442',
-            // );
-            const res = PLF35442;
+        async handleQRQTDetailClick(slideIndex, chartTitle) {
+            const res = await this.$axios(
+                'http://zxerrm.natappfree.cc/whdt_old/PLF35786',
+            );
+            //const res = PLF35786;
+
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
@@ -746,25 +747,25 @@ export default {
             dayObj.res_time = [];
             dayObj.suc_rate = [[], []];
 
-            for (let i = 0; i < res.day.time_list.length; i++) {
-                let t = res.day.time_list[i][0];
+            for (let i = 0; i < res.line_show.day.time_list.length; i++) {
+                let t = res.line_show.day.time_list[i][0];
 
                 let rate = [];
-                rate.push(t, res.day.trade_rate[i]);
+                rate.push(t, res.line_show.day.trade_rate[i]);
                 dayObj.trade_rate.push(rate);
 
                 let num = [];
-                num.push(t, res.day.trade_num[i]);
+                num.push(t, res.line_show.day.trade_num[i]);
                 dayObj.trade_num.push(num);
 
                 let time = [];
-                time.push(t, res.day.res_time[i]);
+                time.push(t, res.line_show.day.res_time[i]);
                 dayObj.res_time.push(time);
 
                 let srate0 = [];
                 let srate1 = [];
-                srate0.push(t, res.day.suc_rate[0][i]);
-                srate1.push(t, res.day.suc_rate[1][i]);
+                srate0.push(t, res.line_show.day.suc_rate[0][i]);
+                srate1.push(t, res.line_show.day.suc_rate[1][i]);
                 dayObj.suc_rate[0].push(srate0);
                 dayObj.suc_rate[1].push(srate1);
             }
@@ -780,25 +781,25 @@ export default {
             hourObj.res_time = [];
             hourObj.suc_rate = [[], []];
 
-            for (let i = 0; i < res.hour.time_list.length; i++) {
-                let t = res.hour.time_list[i][0];
+            for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
+                let t = res.line_show.hour.time_list[i][0];
 
                 let rate = [];
-                rate.push(t, res.hour.trade_rate[i]);
+                rate.push(t, res.line_show.hour.trade_rate[i]);
                 hourObj.trade_rate.push(rate);
 
                 let num = [];
-                num.push(t, res.hour.trade_num[i]);
+                num.push(t, res.line_show.hour.trade_num[i]);
                 hourObj.trade_num.push(num);
 
                 let time = [];
-                time.push(t, res.hour.res_time[i]);
+                time.push(t, res.line_show.hour.res_time[i]);
                 hourObj.res_time.push(time);
 
                 let srate0 = [];
                 let srate1 = [];
-                srate0.push(t, res.hour.suc_rate[0][i]);
-                srate1.push(t, res.hour.suc_rate[1][i]);
+                srate0.push(t, res.line_show.hour.suc_rate[0][i]);
+                srate1.push(t, res.line_show.hour.suc_rate[1][i]);
                 hourObj.suc_rate[0].push(srate0);
                 hourObj.suc_rate[1].push(srate1);
             }
@@ -808,33 +809,34 @@ export default {
         },
     },
     async mounted() {
-        // const res = await this.$axios(
-        //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
-        // );
-        const res = mock;
+        const res = await this.$axios(
+            'http://zxerrm.natappfree.cc/whdt_old',
+        );
+        //const res = mock;
 
         // 充值
-        if (res.index_show.PLF35441) {
-            this.qRSCZetail = res.index_show.PLF35441;
-            this.qRSCZetail.title = res.index_show.PLF35441.TARGET_NAME.split('武汉地铁')[1];
+        if (res.index_show.PLF35793) {
+            this.qRSCZetail = res.index_show.PLF35793;
+            this.qRSCZetail.title = res.index_show.PLF35793.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 其他
-        if (res.index_show.PLF35442) {
-            this.qRQTDetail = res.index_show.PLF35442;
-            this.qRQTDetail.title = res.index_show.PLF35442.TARGET_NAME.split('武汉地铁')[1];
+        if (res.index_show.PLF35786) {
+            this.qRQTDetail = res.index_show.PLF35786;
+            this.qRQTDetail.title = res.index_show.PLF35786.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // let hChartData = res.line_show.hour;
         // let dChartData = res.line_show.day;
-        let hChartData = this.parseHourData(res.line_show);
-        let dChartData = this.parseDayData(res.line_show);
+        let hChartData = this.parseHourData(res);
+        let dChartData = this.parseDayData(res);
         this.dChartData = dChartData;
         this.hChartData = hChartData;
 
-        this.dayTopTime = res.top_show.res_time;
+        this.dayTopTime = res.index_show.update_time;
         this.dayTotalTradeRate = res.top_show.trade_rate;
         this.dayTotalTradeNum = res.top_show.trade_num;
+        this.dayTotalTime = res.top_show.res_time
 
         const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
         if (this.tabIndex !== 4) {

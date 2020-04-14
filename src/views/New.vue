@@ -30,9 +30,7 @@
             <div class="container__detail">
                 <section>
                     <div class="container__detail-item" @click="handleQRSCDetailClick(1, qRSCDetail.title)">
-                        <div class="title">
-                            {{ qRSCDetail.title || '二维码生成' }}
-                        </div>
+                        <div class="title">二维码生成</div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
@@ -49,21 +47,19 @@
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRSCDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.SUC_RATE || '--' }}
+                                    {{ qRSCDetail.SUC_RATE }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRSCDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.S_SUC_RATE || '--' }}
+                                    {{ qRSCDetail.S_SUC_RATE }}
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="container__detail-item ml-10" @click="handleQRXDDetailClick(2, qRXDDetail.title)">
-                        <div class="title">
-                            {{ qRXDDetail.title || '二维码下单' }}
-                        </div>
+                        <div class="title">二维码下单</div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
@@ -86,7 +82,7 @@
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRXDDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRXDDetail.S_SUC_RATE || '--' }}
+                                    {{ qRXDDetail.S_SUC_RATE }}
                                 </span>
                             </div>
                         </div>
@@ -94,9 +90,7 @@
                 </section>
                 <section>
                     <div class="container__detail-item" @click="handleQRCXDetailClick(3, qRCXDetail.title)">
-                        <div class="title">
-                            {{ qRCXDetail.title || '二维码查询' }}
-                        </div>
+                        <div class="title">二维码查询</div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
@@ -113,21 +107,19 @@
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRCXDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.SUC_RATE || '--' }}
+                                    {{ qRCXDetail.SUC_RATE }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRCXDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.S_SUC_RATE || '--' }}
+                                    {{ qRCXDetail.S_SUC_RATE }}
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="container__detail-item ml-10" @click="handleQRTHDetailClick(4, qRTHDetail.title)">
-                        <div class="title">
-                            {{ qRTHDetail.title || '二维码退货' }}
-                        </div>
+                        <div class="title">二维码退货</div>
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
@@ -144,13 +136,13 @@
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRTHDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.SUC_RATE || '--' }}
+                                    {{ qRTHDetail.SUC_RATE }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRTHDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.S_SUC_RATE || '--' }}
+                                    {{ qRTHDetail.S_SUC_RATE }}
                                 </span>
                             </div>
                         </div>
@@ -184,8 +176,15 @@
                     <section class="toolwrap">
                         <div class="toobar">
                             <div class="toobar__summary">
-                                <span v-show="tabIndex === 1 || tabIndex === 2">
-                                    历史峰值：158笔/分(2019-11-11 00:00:01)
+                                <span v-show="tabIndex === 1">
+                                    历史峰值：{{ dataType ? dayTopTradeNum : hourTopTradeNum }}笔/分 ({{
+                                        dataType ? dayTopTradeNumTime : hourTopTradeNumTime
+                                    }})
+                                </span>
+                                <span v-show="tabIndex === 2">
+                                    历史峰值：{{ dataType ? dayTopTradeRate : hourTopTradeRate }}笔 ({{
+                                        dataType ? dayTopTradeRateTime : hourTopTradeRateTime
+                                    }})
                                 </span>
                             </div>
                             <div class="toobar__switch">
@@ -247,7 +246,7 @@ import DtSwitch from '@/components/switch.vue';
 
 import Swiper from 'swiper';
 let chartSwiper = '';
-// import API from '@/api';
+//import API from '@/api';
 const mock = require('../mock/whapi_new.json');
 const PLF35403 = require('../mock/PLF35403.json'); // 二维码生成
 const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
@@ -358,12 +357,32 @@ export default {
             bullet: '',
             hChartData: {},
             dChartData: {},
+            hourTopTradeNumTime: '',
+            hourTopTradeNum: 0,
+            dayTopTradeNumTime: '',
+            dayTopTradeNum: 0,
+            hourTopTradeRateTime: '',
+            hourTopTradeRate: 0,
+            dayTopTradeRateTime: '',
+            dayTopTradeRate: 0,
+            rateTitle: '',
         };
     },
     components: {
         DtSwitch,
     },
     methods: {
+        // 毫秒转换 YYYY/MM/DD HH:mm:ss
+        formatDate(timestemp) {
+            let date = new Date(timestemp);
+            let YY = date.getFullYear() + '/';
+            let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+            let DD = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            let hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+            let mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+            let ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+            return YY + MM + DD + ' ' + hh + mm + ss;
+        },
         // 切换小时/天
         onSwitchChange() {
             // 默认是小时
@@ -397,7 +416,7 @@ export default {
                     },
                     series: [
                         {
-                            name: '业务',
+                            name: '业务成功率',
                             symbol: 'none',
                             data: chartTypeData.suc_rate[0],
                             type: 'line',
@@ -409,7 +428,7 @@ export default {
                             },
                         },
                         {
-                            name: '系统',
+                            name: '系统成功率',
                             symbol: 'none',
                             data: chartTypeData.suc_rate[1],
                             type: 'line',
@@ -457,7 +476,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '交易率',
                         symbol: 'none',
                         data: chartData.trade_rate,
                         type: 'line',
@@ -487,7 +506,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '交易量',
                         symbol: 'none',
                         data: chartData.trade_num,
                         type: 'line',
@@ -513,7 +532,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '响应时间',
                         symbol: 'none',
                         data: chartData.res_time,
                         type: 'line',
@@ -539,7 +558,7 @@ export default {
                 },
                 series: [
                     {
-                        name: '业务',
+                        name: '业务成功率',
                         symbol: 'none',
                         data: chartData.suc_rate[0],
                         type: 'line',
@@ -551,7 +570,7 @@ export default {
                         },
                     },
                     {
-                        name: '系统',
+                        name: '系统成功率',
                         symbol: 'none',
                         data: chartData.suc_rate[1],
                         type: 'line',
@@ -566,15 +585,26 @@ export default {
             });
         },
         // 点击二维码生成详情
-        handleQRSCDetailClick(slideIndex, chartTitle) {
+        async handleQRSCDetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35403',
+            //     'http://zxerrm.natappfree.cc/whdt_new/PLF35403',
             // );
             const res = PLF35403;
+
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
+
+            this.hourTopTradeNumTime = this.formatDate(res.line_show.hour.top_trade_num_time * 1000);
+            this.hourTopTradeNum = res.line_show.hour.top_trade_num;
+            this.dayTopTradeNumTime = this.formatDate(res.line_show.day.top_trade_num_time * 1000);
+            this.dayTopTradeNum = res.line_show.day.top_trade_num;
+
+            this.hourTopTradeRateTime = this.formatDate(res.line_show.hour.top_trade_rate_time * 1000);
+            this.hourTopTradeRate = res.line_show.hour.top_trade_rate;
+            this.dayTopTradeRateTime = this.formatDate(res.line_show.day.top_trade_rate_time * 1000);
+            this.dayTopTradeRate = res.line_show.day.top_trade_rate;
 
             // 缓存数据
             this.dChartData = dChartData;
@@ -616,11 +646,12 @@ export default {
             });
         },
         // 点击二维码下单详情
-        handleQRXDDetailClick(slideIndex, chartTitle) {
+        async handleQRXDDetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35458',
+            //     'http://zxerrm.natappfree.cc/whdt_new/PLF35458',
             // );
             const res = PLF35458;
+
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
@@ -665,11 +696,10 @@ export default {
             });
         },
         // 点击二维码查询详情
-        handleQRCXDetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35457',
-            // );
+        async handleQRCXDetailClick(slideIndex, chartTitle) {
+            // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35457');
             const res = PLF35457;
+
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
@@ -715,11 +745,10 @@ export default {
             });
         },
         // 点击二维码退货详情
-        handleQRTHDetailClick(slideIndex, chartTitle) {
-            // const res = await this.$axios(
-            //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new/PLF35456',
-            // );
+        async handleQRTHDetailClick(slideIndex, chartTitle) {
+            // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35456');
             const res = PLF35456;
+
             // let hChartData = res.hour;
             // let dChartData = res.day;
             let hChartData = this.parseHourData(res);
@@ -880,7 +909,7 @@ export default {
                 },
                 grid: {
                     top: '20%',
-                    left: '9%',
+                    left: '15%',
                     right: '6%',
                     bottom: '15%',
                 },
@@ -932,25 +961,25 @@ export default {
             dayObj.res_time = [];
             dayObj.suc_rate = [[], []];
 
-            for (let i = 0; i < res.day.time_list.length; i++) {
-                let t = res.day.time_list[i][0];
+            for (let i = 0; i < res.line_show.day.time_list.length; i++) {
+                let t = res.line_show.day.time_list[i][0] * 1000;
 
                 let rate = [];
-                rate.push(t, res.day.trade_rate[i]);
+                rate.push(t, res.line_show.day.trade_rate[i]);
                 dayObj.trade_rate.push(rate);
 
                 let num = [];
-                num.push(t, res.day.trade_num[i]);
+                num.push(t, res.line_show.day.trade_num[i]);
                 dayObj.trade_num.push(num);
 
                 let time = [];
-                time.push(t, res.day.res_time[i]);
+                time.push(t, res.line_show.day.res_time[i]);
                 dayObj.res_time.push(time);
 
                 let srate0 = [];
                 let srate1 = [];
-                srate0.push(t, res.day.suc_rate[0][i]);
-                srate1.push(t, res.day.suc_rate[1][i]);
+                srate0.push(t, res.line_show.day.suc_rate[0][i]);
+                srate1.push(t, res.line_show.day.suc_rate[1][i]);
                 dayObj.suc_rate[0].push(srate0);
                 dayObj.suc_rate[1].push(srate1);
             }
@@ -966,25 +995,25 @@ export default {
             hourObj.res_time = [];
             hourObj.suc_rate = [[], []];
 
-            for (let i = 0; i < res.hour.time_list.length; i++) {
-                let t = res.hour.time_list[i][0];
+            for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
+                let t = res.line_show.hour.time_list[i][0] * 1000;
 
                 let rate = [];
-                rate.push(t, res.hour.trade_rate[i]);
+                rate.push(t, res.line_show.hour.trade_rate[i]);
                 hourObj.trade_rate.push(rate);
 
                 let num = [];
-                num.push(t, res.hour.trade_num[i]);
+                num.push(t, res.line_show.hour.trade_num[i]);
                 hourObj.trade_num.push(num);
 
                 let time = [];
-                time.push(t, res.hour.res_time[i]);
+                time.push(t, res.line_show.hour.res_time[i]);
                 hourObj.res_time.push(time);
 
                 let srate0 = [];
                 let srate1 = [];
-                srate0.push(t, res.hour.suc_rate[0][i]);
-                srate1.push(t, res.hour.suc_rate[1][i]);
+                srate0.push(t, res.line_show.hour.suc_rate[0][i]);
+                srate1.push(t, res.line_show.hour.suc_rate[1][i]);
                 hourObj.suc_rate[0].push(srate0);
                 hourObj.suc_rate[1].push(srate1);
             }
@@ -994,45 +1023,44 @@ export default {
         },
     },
     async mounted() {
-        // const res = await this.$axios(
-        //     'https://my-json-server.typicode.com/menogo/jsonapi/whapi_new',
-        // );
+        // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new');
         const res = mock;
 
         // 二维码生成
         if (res.index_show.PLF35403) {
             this.qRSCDetail = res.index_show.PLF35403;
-            this.qRSCDetail.title = res.index_show.PLF35403.TARGET_NAME.split('武汉地铁')[1];
+            this.qRSCDetail.title = '二维码生成' || res.index_show.PLF35403.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码下单
         if (res.index_show.PLF35458) {
             this.qRXDDetail = res.index_show.PLF35458;
-            this.qRXDDetail.title = res.index_show.PLF35458.TARGET_NAME.split('武汉地铁')[1];
+            this.qRXDDetail.title = '二维码下单' || res.index_show.PLF35458.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码查询
         if (res.index_show.PLF35457) {
             this.qRCXDetail = res.index_show.PLF35457;
-            this.qRCXDetail.title = res.index_show.PLF35457.TARGET_NAME.split('武汉地铁')[1];
+            this.qRCXDetail.title = '二维码查询' || res.index_show.PLF35457.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // 二维码退货
         if (res.index_show.PLF35456) {
             this.qRTHDetail = res.index_show.PLF35456;
-            this.qRTHDetail.title = res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
+            this.qRTHDetail.title = '二维码退货' || res.index_show.PLF35456.TARGET_NAME.split('武汉地铁')[1];
         }
 
         // let hChartData = res.line_show.hour;
         // let dChartData = res.line_show.day;
-        let hChartData = this.parseHourData(res.line_show);
-        let dChartData = this.parseDayData(res.line_show);
+        let hChartData = this.parseHourData(res);
+        let dChartData = this.parseDayData(res);
         this.dChartData = dChartData;
         this.hChartData = hChartData;
 
-        this.dayTopTime = res.top_show.res_time;
+        this.dayTopTime = res.index_show.update_time;
         this.dayTotalTradeRate = res.top_show.trade_rate;
         this.dayTotalTradeNum = res.top_show.trade_num;
+        this.dayTotalTime = res.top_show.res_time;
 
         const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
         if (this.tabIndex !== 4) {
