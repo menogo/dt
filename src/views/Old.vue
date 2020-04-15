@@ -175,8 +175,8 @@ import Swiper from 'swiper';
 let chartSwiper = '';
 //import API from '@/api';
 const mock = require('../mock/api_old.json');
-const PLF35793 = require('../mock/PLF35793.json'); // 充值
-const PLF35786 = require('../mock/PLF35786.json'); // 其他
+// const PLF35793 = require('../mock/PLF35793.json'); // 充值
+// const PLF35786 = require('../mock/PLF35786.json'); // 其他
 
 export default {
     name: 'Home',
@@ -315,7 +315,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
-
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -346,7 +346,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
-
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -374,6 +374,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -401,6 +402,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -438,13 +440,13 @@ export default {
         // 点击充值详情
         async handleQRSCZetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35793');
-            const res = PLF35793;
+            const res = this.apiRes.PLF35793;
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击其他详情
         async handleQRQTDetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35786');
-            const res = PLF35786;
+            const res = this.apiRes.PLF35786;
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 切换到旧版
@@ -480,6 +482,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
+                    position: 'top',
                     formatter(datas) {
                         let res = '';
 
@@ -574,10 +577,10 @@ export default {
                 },
                 grid: {
                     containLabel: true,
-                    top: '20%',
+                    top: '25%',
                     left: '3%',
                     right: '6%',
-                    bottom: '15%',
+                    bottom: '10%',
                 },
                 series: opt.series || [],
             };
@@ -832,6 +835,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
+                    position: 'top',
                     formatter(datas) {
                         let res = '';
 
@@ -926,10 +930,10 @@ export default {
                 },
                 grid: {
                     containLabel: true,
-                    top: '20%',
+                    top: '25%',
                     left: '3%',
                     right: '6%',
-                    bottom: '15%',
+                    bottom: '10%',
                 },
                 series: [],
             };
@@ -1233,6 +1237,7 @@ export default {
     width: 100vw;
     position: relative;
     padding-bottom: 20px;
+    margin-top: 15px;
 }
 
 .swiper-container {
@@ -1256,10 +1261,10 @@ export default {
 }
 
 .swiper-container--copy {
-    height: 40px;
+    height: 60px;
     // border: 1px solid green;
     position: absolute;
-    top: -10px;
+    top: -15px;
     width: 80%;
     z-index: 999;
 }

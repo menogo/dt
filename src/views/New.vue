@@ -382,7 +382,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
-
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -413,7 +413,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
-
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -441,6 +441,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -468,6 +469,7 @@ export default {
             // console.log('current slideIndex: ', this.slideIndex);
             // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
+            this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
                 xAxis: {
                     interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
@@ -579,6 +581,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
+                    position: 'top',
                     formatter(datas) {
                         let res = '';
 
@@ -673,10 +676,10 @@ export default {
                 },
                 grid: {
                     containLabel: true,
-                    top: '20%',
+                    top: '25%',
                     left: '3%',
                     right: '6%',
-                    bottom: '15%',
+                    bottom: '10%',
                 },
                 series: opt.series || [],
             };
@@ -940,6 +943,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
+                    position: 'top',
                     formatter(datas) {
                         let res = '';
 
@@ -1034,10 +1038,10 @@ export default {
                 },
                 grid: {
                     containLabel: true,
-                    top: '20%',
+                    top: '25%',
                     left: '3%',
                     right: '6%',
-                    bottom: '15%',
+                    bottom: '10%',
                 },
                 series: [],
             };
@@ -1359,6 +1363,7 @@ export default {
     width: 100vw;
     position: relative;
     padding-bottom: 20px;
+    margin-top: 15px;
 }
 
 .swiper-container {
@@ -1382,10 +1387,10 @@ export default {
 }
 
 .swiper-container--copy {
-    height: 40px;
+    height: 60px;
     // border: 1px solid green;
     position: absolute;
-    top: -10px;
+    top: -15px;
     width: 80%;
     z-index: 999;
 }
