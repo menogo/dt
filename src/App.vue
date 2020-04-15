@@ -20,6 +20,6 @@ body {
     // background: #162458;
     background: #141e44;
     font-size: 14px;
-    overflow: hidden;
+    // overflow: hidden;
 }
 </style>
