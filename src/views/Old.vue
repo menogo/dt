@@ -482,7 +482,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
-                    position: ['38%', '24%'],
+                    position: ['40%', '35%'],
                     formatter(datas) {
                         let res = '';
 
@@ -836,7 +836,7 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
-                    position: ['38%', '24%'],
+                    position: ['40%', '35%'],
                     formatter(datas) {
                         let res = '';
 
