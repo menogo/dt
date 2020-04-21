@@ -150,11 +150,11 @@
                                 <div id="js-chart-total" style="width: 100%; height:180px;"></div>
                             </div>
                             <div class="swiper-slide">
-                                <!-- index1 二维码生成 -->
+                                <!-- index1 充值 -->
                                 <div id="js-chart-qrcz" style="width: 100%; height:180px;"></div>
                             </div>
                             <div class="swiper-slide">
-                                <!-- index2 二维码下单 -->
+                                <!-- index2 其他 -->
                                 <div id="js-chart-qrqt" style="width: 100%; height:180px;"></div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ import DtSwitch from '@/components/switch.vue';
 import Swiper from 'swiper';
 let chartSwiper = '';
 //import API from '@/api';
-const mock = require('../mock/api_old.json');
+const mock = require('../mock/get_old_data.json');
 // const PLF35793 = require('../mock/PLF35793.json'); // 充值
 // const PLF35786 = require('../mock/PLF35786.json'); // 其他
 
@@ -440,13 +440,13 @@ export default {
         // 点击充值详情
         async handleQRSCZetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35793');
-            const res = this.apiRes.PLF35793;
+            const res = this.apiRes.msg.PLF35793;
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击其他详情
         async handleQRQTDetailClick(slideIndex, chartTitle) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old/PLF35786');
-            const res = this.apiRes.PLF35786;
+            const res = this.apiRes.msg.PLF35786;
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 切换到旧版
@@ -482,14 +482,14 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
-                    position: 'top',
+                    position: ['38%', '24%'],
                     formatter(datas) {
                         let res = '';
 
                         if (vm.tabIndex === 1) {
                             res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔/秒';
+                            res += datas[0].data[1] + '笔/分';
                         }
 
                         if (vm.tabIndex === 2) {
@@ -615,7 +615,7 @@ export default {
             this.slideIndex = slideIndex;
 
             // 重置 tab 为交易率
-            // this.tabIndex = 1;
+            this.tabIndex = 1;
 
             // 切换slider
             // console.log('slideIndex', slideIndex);
@@ -710,7 +710,7 @@ export default {
             }
 
             if (slideIndex === 2) {
-                return '其它';
+                return '其他';
             }
         },
         parseDayData(res) {
@@ -722,7 +722,7 @@ export default {
             dayObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.day.time_list.length; i++) {
-                let t = res.line_show.day.time_list[i][0] * 1000;
+                let t = res.line_show.day.time_list[i] * 1000;
 
                 let rate = [];
                 rate.push(t, res.line_show.day.trade_rate[i]);
@@ -758,7 +758,7 @@ export default {
             hourObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
-                let t = res.line_show.hour.time_list[i][0] * 1000;
+                let t = res.line_show.hour.time_list[i] * 1000;
 
                 let rate = [];
                 rate.push(t, res.line_show.hour.trade_rate[i]);
@@ -816,10 +816,11 @@ export default {
                 }
             }
         },
-        initPage() {
+        async initPage() {
             const vm = this;
 
-            // / const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_old');
+            // const res = await this.$axios('http://shi.natapp1.cc/mobile/whapi/old');
+            // const res = await this.$axios('/mobile/whdtApp/get_old_data');
             const res = mock;
             this.apiRes = res;
 
@@ -835,14 +836,14 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
-                    position: 'top',
+                    position: ['38%', '24%'],
                     formatter(datas) {
                         let res = '';
 
                         if (vm.tabIndex === 1) {
                             res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔/秒';
+                            res += datas[0].data[1] + '笔/分';
                         }
 
                         if (vm.tabIndex === 2) {
@@ -939,28 +940,41 @@ export default {
             };
 
             // 充值
-            if (res.PLF35793) {
-                this.qRSCZetail = res.PLF35793.meta;
+            if (res.msg.PLF35793) {
+                this.qRSCZetail = res.msg.PLF35793.meta;
                 this.qRSCZetail.title = '充值';
+                if (this.qRSCZetail.SUC_RATE === '0.0') {
+                    this.qRSCZetail.SUC_RATE *= 1;
+                }
+                if (this.qRSCZetail.S_SUC_RATE === '0.0') {
+                    this.qRSCZetail.S_SUC_RATE *= 1;
+                }
             }
 
             // 其他
-            if (res.PLF35786) {
-                this.qRQTDetail = res.PLF35786.meta;
-                this.qRQTDetail.title = '其它';
+            if (res.msg.PLF35786) {
+                this.qRQTDetail = res.msg.PLF35786.meta;
+                this.qRQTDetail.title = '其他';
+                if (this.qRQTDetail.SUC_RATE === '0.0') {
+                    this.qRQTDetail.SUC_RATE *= 1;
+                }
+                if (this.qRQTDetail.S_SUC_RATE === '0.0') {
+                    this.qRQTDetail.S_SUC_RATE *= 1;
+                }
             }
 
             // let hChartData = res.line_show.hour;
             // let dChartData = res.line_show.day;
-            let hChartData = this.parseHourData(res.TOTAL);
-            let dChartData = this.parseDayData(res.TOTAL);
+            let hChartData = this.parseHourData(res.msg.TOTAL);
+            let dChartData = this.parseDayData(res.msg.TOTAL);
             this.dChartData = dChartData;
             this.hChartData = hChartData;
 
-            this.dayTopTime = this.formatDate(new Date(res.TOTAL.update_time).getTime());
-            this.dayTotalTradeRate = res.TOTAL.top_show.trade_rate;
-            this.dayTotalTradeNum = res.TOTAL.top_show.trade_num;
-            this.dayTotalTime = res.TOTAL.top_show.res_time;
+            // this.dayTopTime = this.formatDate(new Date(res.TOTAL.update_time).getTime());
+            this.dayTopTime = res.msg.TOTAL.update_time;
+            this.dayTotalTradeRate = res.msg.TOTAL.top_show.trade_rate;
+            this.dayTotalTradeNum = res.msg.TOTAL.top_show.trade_num;
+            this.dayTotalTime = res.msg.TOTAL.top_show.res_time;
 
             const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
             if (this.tabIndex !== 4) {
@@ -1059,7 +1073,7 @@ export default {
 
         setInterval(() => {
             this.initPage();
-        }, 50000);
+        }, 10000);
     },
 };
 </script>

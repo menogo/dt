@@ -6,6 +6,8 @@ import '@/assets/js/axios';
 import './assets/css/app.css';
 import './assets/css/swiper.min.css';
 
+Vue.prototype.$axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? '/api' : window.origin
+
 Vue.config.productionTip = false;
 
 const app = new Vue({

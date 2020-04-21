@@ -29,7 +29,7 @@
             </div>
             <div class="container__detail">
                 <section>
-                    <div class="container__detail-item" @click="handleQRSCDetailClick(1, qRSCDetail.title)">
+                    <div class="container__detail-item" @click="handleQRSCDetailClick(1, qRSCDetail.title, true)">
                         <div class="title">二维码生成</div>
                         <div class="list">
                             <div class="item">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container__detail-item ml-10" @click="handleQRXDDetailClick(2, qRXDDetail.title)">
+                    <div class="container__detail-item ml-10" @click="handleQRXDDetailClick(2, qRXDDetail.title, true)">
                         <div class="title">二维码下单</div>
                         <div class="list">
                             <div class="item">
@@ -89,7 +89,7 @@
                     </div>
                 </section>
                 <section>
-                    <div class="container__detail-item" @click="handleQRCXDetailClick(3, qRCXDetail.title)">
+                    <div class="container__detail-item" @click="handleQRCXDetailClick(3, qRCXDetail.title, true)">
                         <div class="title">二维码查询</div>
                         <div class="list">
                             <div class="item">
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container__detail-item ml-10" @click="handleQRTHDetailClick(4, qRTHDetail.title)">
+                    <div class="container__detail-item ml-10" @click="handleQRTHDetailClick(4, qRTHDetail.title, true)">
                         <div class="title">二维码退货</div>
                         <div class="list">
                             <div class="item">
@@ -256,6 +256,11 @@ export default {
             qRXDDetail: {}, // 二维码下单详情
             qRCXDetail: {}, // 二维码查询详情
             qRTHDetail: {}, // 二维码退货详情
+            PLF35403: {},
+            PLF35456: {},
+            PLF35457: {},
+            PLF35458: {},
+            TOTAL: {},
             chartSwiper: '',
             tabIndex: 1,
             slideIndex: 0,
@@ -354,13 +359,24 @@ export default {
                     ],
                 });
             } else {
+                let name = '';
+                if (this.tabIndex === 1) {
+                    name = '交易率';
+                }
+                if (this.tabIndex === 2) {
+                    name = '交易量';
+                }
+                if (this.tabIndex === 3) {
+                    name = '相应时间';
+                }
+
                 this.drawChart(this.slideIndex, {
                     xAxis: {
                         interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
                     },
                     series: [
                         {
-                            name: '业务',
+                            name: name,
                             // symbol: 'none',
                             showSymbol: false,
                             data: tabData,
@@ -379,8 +395,8 @@ export default {
         // 点击交易率 tab
         switchToTRate(tabIndex) {
             this.tabIndex = tabIndex;
-            // console.log('current slideIndex: ', this.slideIndex);
-            // console.log('current tabIndex: ', tabIndex);
+            console.log('current slideIndex: ', this.slideIndex);
+            console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
@@ -410,8 +426,8 @@ export default {
 
             // 1.检查当前是在哪个详情/slide
             // 2.在当前slide下更新折线图
-            // console.log('current slideIndex: ', this.slideIndex);
-            // console.log('current tabIndex: ', tabIndex);
+            console.log('current slideIndex: ', this.slideIndex);
+            console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
@@ -505,27 +521,51 @@ export default {
             });
         },
         // 点击二维码生成详情
-        async handleQRSCDetailClick(slideIndex, chartTitle) {
+        async handleQRSCDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35403');
             const res = this.apiRes.PLF35403;
+            chartSwiper.slideTo(slideIndex);
+
+            if (reset) {
+                this.tabIndex = 1;
+            }
+
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击二维码下单详情
-        async handleQRXDDetailClick(slideIndex, chartTitle) {
+        async handleQRXDDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35458');
             const res = this.apiRes.PLF35458;
+            chartSwiper.slideTo(slideIndex);
+
+            if (reset) {
+                this.tabIndex = 1;
+            }
+
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击二维码查询详情
-        async handleQRCXDetailClick(slideIndex, chartTitle) {
+        async handleQRCXDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35457');
             const res = this.apiRes.PLF35457;
+            chartSwiper.slideTo(slideIndex);
+
+            if (reset) {
+                this.tabIndex = 1;
+            }
+
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击二维码退货详情
-        async handleQRTHDetailClick(slideIndex, chartTitle) {
+        async handleQRTHDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35456');
             const res = this.apiRes.PLF35456;
+            chartSwiper.slideTo(slideIndex);
+
+            if (reset) {
+                this.tabIndex = 1;
+            }
+
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 切换到旧版
@@ -534,12 +574,12 @@ export default {
             this.$router.replace('/old');
         },
         // 修改pagination状态
-        updatePaginationActive(index) {
-            this.bullet.forEach(item => {
-                item.classList.remove('swiper-pagination-bullet-active');
-            });
-            this.bullet[index].classList.add('swiper-pagination-bullet-active');
-        },
+        // updatePaginationActive(index) {
+        //     this.bullet.forEach(item => {
+        //         item.classList.remove('swiper-pagination-bullet-active');
+        //     });
+        //     this.bullet[index].classList.add('swiper-pagination-bullet-active');
+        // },
         // 画图
         drawChart(index = 0, opt = {}) {
             // type 1-交易率；2-交易量；3-响应时间；4-成功率
@@ -701,7 +741,8 @@ export default {
             chart.setOption(options, true);
         },
         // 切换详情重新换图
-        reDrawChart(slideIndex, chartTitle, res) {
+        reDrawChart(slideIndex, chartTitle, res, tabIndex = null) {
+            console.log('reDrawChart', slideIndex, chartTitle, res);
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
 
@@ -714,11 +755,13 @@ export default {
             this.slideIndex = slideIndex;
 
             // 重置 tab 为交易率
-            // this.tabIndex = 1;
+            if (tabIndex) {
+                this.tabIndex = tabIndex;
+            }
 
             // 切换slider
             // console.log('slideIndex', slideIndex);
-            chartSwiper.slideTo(slideIndex);
+            // chartSwiper.slideTo(slideIndex);
 
             // 小时、天数据
             let chartData = '';
@@ -777,13 +820,24 @@ export default {
                     ],
                 });
             } else {
+                let name = '';
+                if (this.tabIndex === 1) {
+                    name = '交易率';
+                }
+                if (this.tabIndex === 2) {
+                    name = '交易量';
+                }
+                if (this.tabIndex === 3) {
+                    name = '相应时间';
+                }
+
                 this.drawChart(this.slideIndex, {
                     xAxis: {
                         interval: this.dataType === true ? 240 * 60000 : 10 * 60000,
                     },
                     series: [
                         {
-                            name: '业务',
+                            name: name,
                             // symbol: 'none',
                             showSymbol: false,
                             data: tabData,
@@ -865,6 +919,7 @@ export default {
 
             for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
                 let t = res.line_show.hour.time_list[i][0] * 1000;
+                // let t = new Date(res.line_show.hour.time_list[i][0]);
 
                 let rate = [];
                 rate.push(t, res.line_show.hour.trade_rate[i]);
@@ -929,6 +984,7 @@ export default {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new');
             const res = mock;
             this.apiRes = res;
+            console.log(this.tabIndex);
 
             // console.log(res);
             const chartOpt = {
@@ -1050,24 +1106,33 @@ export default {
             if (res.PLF35403) {
                 this.qRSCDetail = res.PLF35403.meta;
                 this.qRSCDetail.title = '二维码生成';
+                this.PLF35403 = res.PLF35403;
             }
 
             // 二维码下单
             if (res.PLF35458) {
                 this.qRXDDetail = res.PLF35458.meta;
                 this.qRXDDetail.title = '二维码下单';
+                this.PLF35458 = res.PLF35458;
             }
 
             // 二维码查询
             if (res.PLF35457) {
                 this.qRCXDetail = res.PLF35457.meta;
                 this.qRCXDetail.title = '二维码查询';
+                this.PLF35457 = res.PLF35457;
             }
 
             // 二维码退货
             if (res.PLF35456) {
                 this.qRTHDetail = res.PLF35456.meta;
                 this.qRTHDetail.title = '二维码退货';
+                this.PLF35456 = res.PLF35456;
+            }
+
+            // 总览
+            if (res.TOTAL) {
+                this.TOTAL = res.TOTAL;
             }
 
             // let hChartData = res.line_show.hour;
@@ -1082,110 +1147,158 @@ export default {
             this.dayTotalTradeNum = res.TOTAL.top_show.trade_num;
             this.dayTotalTime = res.TOTAL.top_show.res_time;
 
-            const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
-            if (this.tabIndex !== 4) {
-                chartOpt.legend = '';
+            // const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
+            // if (this.tabIndex !== 4) {
+            //     chartOpt.legend = '';
+            // }
+
+            // 当前停留在哪个 tab 就选择对应 tab 的数据
+            // this.tabIndex === 1 && this.switchToTRate(this.tabIndex);
+            // this.tabIndex === 2 && this.switchToTSum(this.tabIndex);
+            // this.tabIndex === 3 && this.switchToRTime(this.tabIndex);
+            // this.tabIndex === 4 && this.switchToSRate(this.tabIndex);
+
+            // chartOpt.series = [
+            //     {
+            //         name: '业务',
+            //         // symbol: 'none',
+            //         showSymbol: false,
+            //         data: hChartData.trade_rate,
+            //         type: 'line',
+            //         smooth: true,
+            //         itemStyle: {
+            //             normal: {
+            //                 color: '#FFEE58',
+            //             },
+            //         },
+            //     },
+            // ];
+            console.log(chartOpt);
+            // totalChart.setOption(chartOpt);
+
+            let chartData = {};
+            if (this.slideIndex === 0) {
+                chartData = res.TOTAL;
+            }
+            if (this.slideIndex === 1) {
+                chartData = res.PLF35403;
+            }
+            if (this.slideIndex === 2) {
+                chartData = res.PLF35458;
+            }
+            if (this.slideIndex === 3) {
+                chartData = res.PLF35457;
+            }
+            if (this.slideIndex === 4) {
+                chartData = res.PLF35456;
             }
 
-            chartOpt.series = [
-                {
-                    name: '业务',
-                    // symbol: 'none',
-                    showSymbol: false,
-                    data: hChartData.trade_rate,
-                    type: 'line',
-                    smooth: true,
-                    itemStyle: {
-                        normal: {
-                            color: '#FFEE58',
-                        },
-                    },
-                },
-            ];
-            // console.log(chartOpt);
-            totalChart.setOption(chartOpt);
-
-            chartSwiper = new Swiper('.swiper-container', {
-                // If we need pagination
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                on: {
-                    slideChange() {
-                        let index = this.activeIndex;
-                        vm.chartTitle = vm.updateChartTitle(index);
-                        chartSwiper.slideTo(index);
-
-                        if (index === 1) {
-                            vm.handleQRSCDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 2) {
-                            vm.handleQRXDDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 3) {
-                            vm.handleQRCXDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 4) {
-                            vm.handleQRTHDetailClick(index, vm.chartTitle);
-                        }
-                        // console.log('改变了，activeIndex为' + this.activeIndex);
-                    },
-                },
-            });
-
-            const chartCC = new Swiper('.swiper-container--copy', {
-                on: {
-                    slideNextTransitionEnd() {
-                        chartSwiper.slideNext();
-                        let index = chartCC.activeIndex;
-                        vm.chartTitle = vm.updateChartTitle(index);
-
-                        if (index === 1) {
-                            vm.handleQRSCDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 2) {
-                            vm.handleQRXDDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 3) {
-                            vm.handleQRCXDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 4) {
-                            vm.handleQRTHDetailClick(index, vm.chartTitle);
-                        }
-                    },
-
-                    slidePrevTransitionEnd() {
-                        chartSwiper.slidePrev();
-                        let index = chartCC.activeIndex;
-                        vm.chartTitle = vm.updateChartTitle(index);
-
-                        if (index === 1) {
-                            vm.handleQRSCDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 2) {
-                            vm.handleQRXDDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 3) {
-                            vm.handleQRCXDetailClick(index, vm.chartTitle);
-                        }
-                        if (index === 4) {
-                            vm.handleQRTHDetailClick(index, vm.chartTitle);
-                        }
-                    },
-                },
-            });
-
-            window.chart = chartSwiper;
-            this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
+            this.reDrawChart(this.slideIndex, this.chartTitle, chartData);
+            // this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
         },
     },
     async mounted() {
+        const vm = this;
+        chartSwiper = new Swiper('.swiper-container', {
+            autoplay: false,
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            on: {
+                slideChange() {
+                    let index = this.activeIndex;
+                    vm.chartTitle = vm.updateChartTitle(index);
+                    chartSwiper.slideTo(index);
+                    vm.slideIndex = index;
+                    // vm.tabIndex = 1;
+
+                    console.log('slideChange');
+                    if (index === 0) {
+                        vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
+                    }
+
+                    if (index === 1) {
+                        // vm.reDrawChart(index, vm.chartTitle, vm.PLF35403, 1);
+                        vm.handleQRSCDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 2) {
+                        // vm.reDrawChart(index, vm.chartTitle, vm.PLF35458, 1);
+                        vm.handleQRXDDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 3) {
+                        // vm.reDrawChart(index, vm.chartTitle, vm.PLF35457, 1);
+                        vm.handleQRCXDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 4) {
+                        // vm.reDrawChart(index, vm.chartTitle, vm.PLF35456, 1);
+                        vm.handleQRTHDetailClick(index, vm.chartTitle, true);
+                    }
+                    // console.log('改变了，activeIndex为' + this.activeIndex);
+                },
+            },
+        });
+
+        const chartCC = new Swiper('.swiper-container--copy', {
+            autoplay: false,
+            on: {
+                slideNextTransitionEnd() {
+                    chartSwiper.slideNext();
+                    let index = chartCC.activeIndex;
+                    vm.chartTitle = vm.updateChartTitle(index);
+                    vm.slideIndex = index;
+                    // vm.tabIndex = 1;
+
+                    if (index === 0) {
+                        vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
+                    }
+                    if (index === 1) {
+                        vm.handleQRSCDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 2) {
+                        vm.handleQRXDDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 3) {
+                        vm.handleQRCXDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 4) {
+                        vm.handleQRTHDetailClick(index, vm.chartTitle, true);
+                    }
+                },
+
+                slidePrevTransitionEnd() {
+                    chartSwiper.slidePrev();
+                    let index = chartCC.activeIndex;
+                    vm.chartTitle = vm.updateChartTitle(index);
+                    vm.slideIndex = index;
+                    // vm.tabIndex = 1;
+
+                    if (index === 0) {
+                        vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
+                    }
+                    if (index === 1) {
+                        vm.handleQRSCDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 2) {
+                        vm.handleQRXDDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 3) {
+                        vm.handleQRCXDetailClick(index, vm.chartTitle, true);
+                    }
+                    if (index === 4) {
+                        vm.handleQRTHDetailClick(index, vm.chartTitle, true);
+                    }
+                },
+            },
+        });
+
+        window.chart = chartSwiper;
         this.initPage();
 
         setInterval(() => {
             this.initPage();
-        }, 50000);
+        }, 5000);
     },
 };
 </script>
