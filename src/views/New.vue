@@ -34,26 +34,26 @@
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
-                                <span class="sumup">{{ qRSCDetail.TRADE_NUM || '--' }} </span>
+                                <span class="sumup">{{ qRSCDetail.TRADE_NUM || '0.0' }} </span>
                             </div>
                             <div class="item">
                                 <span class="type">日交易量(笔)</span>
-                                <span class="sumup">{{ qRSCDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRSCDetail.SUM_TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">响应时间(ms)</span>
-                                <span class="sumup">{{ qRSCDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="sumup">{{ qRSCDetail.RESPONSE_TIME || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRSCDetail.SUC_RATE > 0 && qRSCDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.SUC_RATE || '--' }}
+                                    {{ qRSCDetail.SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRSCDetail.S_SUC_RATE > 0 && qRSCDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRSCDetail.S_SUC_RATE || '--' }}
+                                    {{ qRSCDetail.S_SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                         </div>
@@ -63,26 +63,26 @@
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
-                                <span class="sumup">{{ qRXDDetail.TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRXDDetail.TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">日交易量(笔)</span>
-                                <span class="sumup">{{ qRXDDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRXDDetail.SUM_TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">响应时间(ms)</span>
-                                <span class="sumup">{{ qRXDDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="sumup">{{ qRXDDetail.RESPONSE_TIME || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRXDDetail.SUC_RATE > 0 && qRXDDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRXDDetail.SUC_RATE || '--' }}
+                                    {{ qRXDDetail.SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRXDDetail.S_SUC_RATE > 0 && qRXDDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRXDDetail.S_SUC_RATE > 0 || '--' }}
+                                    {{ qRXDDetail.S_SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                         </div>
@@ -94,26 +94,26 @@
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
-                                <span class="sumup">{{ qRCXDetail.TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRCXDetail.TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">日交易量(笔)</span>
-                                <span class="sumup">{{ qRCXDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRCXDetail.SUM_TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">响应时间(ms)</span>
-                                <span class="sumup">{{ qRCXDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="sumup">{{ qRCXDetail.RESPONSE_TIME || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRCXDetail.SUC_RATE > 0 && qRCXDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.SUC_RATE || '--' }}
+                                    {{ qRCXDetail.SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRCXDetail.S_SUC_RATE > 0 && qRCXDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRCXDetail.S_SUC_RATE || '--' }}
+                                    {{ qRCXDetail.S_SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                         </div>
@@ -123,26 +123,26 @@
                         <div class="list">
                             <div class="item">
                                 <span class="type">交易率(笔/分)</span>
-                                <span class="sumup">{{ qRTHDetail.TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRTHDetail.TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">日交易量(笔)</span>
-                                <span class="sumup">{{ qRTHDetail.SUM_TRADE_NUM || '--' }}</span>
+                                <span class="sumup">{{ qRTHDetail.SUM_TRADE_NUM || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">响应时间(ms)</span>
-                                <span class="sumup">{{ qRTHDetail.RESPONSE_TIME || '--' }}</span>
+                                <span class="sumup">{{ qRTHDetail.RESPONSE_TIME || '0.0' }}</span>
                             </div>
                             <div class="item">
                                 <span class="type">业务成功率(%)</span>
                                 <span class="sumup" :class="qRTHDetail.SUC_RATE > 0 && qRTHDetail.SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.SUC_RATE || '--' }}
+                                    {{ qRTHDetail.SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                             <div class="item">
                                 <span class="type">系统成功率(%)</span>
                                 <span class="sumup" :class="qRTHDetail.S_SUC_RATE > 0 && qRTHDetail.S_SUC_RATE <= 80 ? 'error' : ''">
-                                    {{ qRTHDetail.S_SUC_RATE || '--' }}
+                                    {{ qRTHDetail.S_SUC_RATE || '0.0' }}
                                 </span>
                             </div>
                         </div>
@@ -240,11 +240,12 @@ import DtSwitch from '@/components/switch.vue';
 import Swiper from 'swiper';
 let chartSwiper = '';
 //import API from '@/api';
-const mock = require('../mock/api_new.json');
+// const mock = require('../mock/get_new_data.json');
 // const PLF35403 = require('../mock/PLF35403.json'); // 二维码生成
 // const PLF35456 = require('../mock/PLF35456.json'); // 二维码退货
 // const PLF35457 = require('../mock/PLF35457.json'); // 二维码查询
 // const PLF35458 = require('../mock/PLF35458.json'); // 二维码下单
+let timer = '';
 
 export default {
     name: 'Home',
@@ -367,7 +368,7 @@ export default {
                     name = '交易量';
                 }
                 if (this.tabIndex === 3) {
-                    name = '相应时间';
+                    name = '响应时间';
                 }
 
                 this.drawChart(this.slideIndex, {
@@ -395,8 +396,8 @@ export default {
         // 点击交易率 tab
         switchToTRate(tabIndex) {
             this.tabIndex = tabIndex;
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
@@ -426,8 +427,8 @@ export default {
 
             // 1.检查当前是在哪个详情/slide
             // 2.在当前slide下更新折线图
-            console.log('current slideIndex: ', this.slideIndex);
-            console.log('current tabIndex: ', tabIndex);
+            // console.log('current slideIndex: ', this.slideIndex);
+            // console.log('current tabIndex: ', tabIndex);
             const chartData = this.dataType ? this.dChartData : this.hChartData;
             this.concatChartMetaTitle();
             this.drawChart(this.slideIndex, {
@@ -523,53 +524,58 @@ export default {
         // 点击二维码生成详情
         async handleQRSCDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35403');
-            const res = this.apiRes.PLF35403;
+            const res = this.apiRes.msg.PLF35403;
             chartSwiper.slideTo(slideIndex);
-
-            if (reset) {
+            
+            // 重置 tab 为交易率
+            if(reset){
                 this.tabIndex = 1;
             }
-
             this.reDrawChart(slideIndex, chartTitle, res);
+            
         },
         // 点击二维码下单详情
         async handleQRXDDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35458');
-            const res = this.apiRes.PLF35458;
+            const res = this.apiRes.msg.PLF35458;
             chartSwiper.slideTo(slideIndex);
-
-            if (reset) {
+            // 重置 tab 为交易率
+            if(reset){
                 this.tabIndex = 1;
             }
-
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击二维码查询详情
         async handleQRCXDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35457');
-            const res = this.apiRes.PLF35457;
+            const res = this.apiRes.msg.PLF35457;
             chartSwiper.slideTo(slideIndex);
-
-            if (reset) {
+            // 重置 tab 为交易率
+            if(reset){
                 this.tabIndex = 1;
             }
-
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 点击二维码退货详情
         async handleQRTHDetailClick(slideIndex, chartTitle, reset = false) {
             // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new/PLF35456');
-            const res = this.apiRes.PLF35456;
+            const res = this.apiRes.msg.PLF35456;
             chartSwiper.slideTo(slideIndex);
-
-            if (reset) {
+            // 重置 tab 为交易率
+            if(reset){
                 this.tabIndex = 1;
             }
-
             this.reDrawChart(slideIndex, chartTitle, res);
         },
         // 切换到旧版
         switchToOldVersion() {
+            const time = +window.localStorage['switchTime'] || 0;
+            const nowTime = Date.now();
+            if(nowTime - time < 2000){
+                return;
+            }
+            window.localStorage['switchTime'] = nowTime;
+            clearInterval(timer);
             chartSwiper.slideTo(0);
             this.$router.replace('/old');
         },
@@ -621,14 +627,14 @@ export default {
                     axisPointer: {
                         type: 'none',
                     },
-                    position: ['40%', '35%'],
+                    position: ['38%', '24%'],
                     formatter(datas) {
                         let res = '';
 
                         if (vm.tabIndex === 1) {
                             res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
                             res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔/秒';
+                            res += datas[0].data[1] + '笔/分';
                         }
 
                         if (vm.tabIndex === 2) {
@@ -742,7 +748,7 @@ export default {
         },
         // 切换详情重新换图
         reDrawChart(slideIndex, chartTitle, res, tabIndex = null) {
-            console.log('reDrawChart', slideIndex, chartTitle, res);
+            // console.log('reDrawChart', slideIndex, chartTitle, res);
             let hChartData = this.parseHourData(res);
             let dChartData = this.parseDayData(res);
 
@@ -828,7 +834,7 @@ export default {
                     name = '交易量';
                 }
                 if (this.tabIndex === 3) {
-                    name = '相应时间';
+                    name = '响应时间';
                 }
 
                 this.drawChart(this.slideIndex, {
@@ -883,7 +889,7 @@ export default {
             dayObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.day.time_list.length; i++) {
-                let t = res.line_show.day.time_list[i][0] * 1000;
+                let t = res.line_show.day.time_list[i] * 1000;
 
                 let rate = [];
                 rate.push(t, res.line_show.day.trade_rate[i]);
@@ -918,9 +924,8 @@ export default {
             hourObj.suc_rate = [[], []];
 
             for (let i = 0; i < res.line_show.hour.time_list.length; i++) {
-                let t = res.line_show.hour.time_list[i][0] * 1000;
-                // let t = new Date(res.line_show.hour.time_list[i][0]);
-
+                let t = res.line_show.hour.time_list[i] * 1000;
+                
                 let rate = [];
                 rate.push(t, res.line_show.hour.trade_rate[i]);
                 hourObj.trade_rate.push(rate);
@@ -962,190 +967,214 @@ export default {
         concatChartMetaTitle() {
             if (this.dataType === true) {
                 if (this.tabIndex === 1) {
-                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeNum}笔/分 (${this.dayTopTradeNumTime})`;
+                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeRate}笔/分 (${this.dayTopTradeRateTime})`;
                 }
 
                 if (this.tabIndex === 2) {
-                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeRate}笔 (${this.dayTopTradeRateTime})`;
+                    this.chartMetaTitle = `历史峰值：${this.dayTopTradeNum}笔 (${this.dayTopTradeNumTime})`;
                 }
             } else {
                 if (this.tabIndex === 1) {
-                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeNum}笔/分 (${this.hourTopTradeNumTime})`;
+                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeRate}笔/分 (${this.hourTopTradeRateTime})`;
                 }
 
                 if (this.tabIndex === 2) {
-                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeRate}笔 (${this.hourTopTradeRateTime})`;
+                    this.chartMetaTitle = `历史峰值：${this.hourTopTradeNum}笔 (${this.hourTopTradeNumTime})`;
                 }
             }
         },
-        initPage() {
-            const vm = this;
+        async initPage() {
+            // const vm = this;
 
-            // const res = await this.$axios('http://zxerrm.natappfree.cc/whdt_new');
-            const res = mock;
+            const res = await this.$axios('/mobile/whdtApp/get_new_data');
+            // const res = mock;
             this.apiRes = res;
-            console.log(this.tabIndex);
+            // console.log(this.tabIndex);
 
             // console.log(res);
-            const chartOpt = {
-                color: ['#FFEE58'],
-                tooltip: {
-                    trigger: 'axis',
-                    backgroundColor: 'rgba(8,18,50,0.80)',
-                    textStyle: {
-                        fontSize: '10',
-                        align: 'left',
-                    },
-                    axisPointer: {
-                        type: 'none',
-                    },
-                    position: ['40%', '35%'],
-                    formatter(datas) {
-                        let res = '';
+            // const chartOpt = {
+            //     color: ['#FFEE58'],
+            //     tooltip: {
+            //         trigger: 'axis',
+            //         backgroundColor: 'rgba(8,18,50,0.80)',
+            //         textStyle: {
+            //             fontSize: '10',
+            //             align: 'left',
+            //         },
+            //         axisPointer: {
+            //             type: 'none',
+            //         },
+            //         position: ['38%', '24%'],
+            //         formatter(datas) {
+            //             let res = '';
 
-                        if (vm.tabIndex === 2) {
-                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
-                            res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔';
-                        }
+            //             if (vm.tabIndex === 2) {
+            //                 res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+            //                 res += datas[0].seriesName + ': ';
+            //                 res += datas[0].data[1] + '笔';
+            //             }
 
-                        if (vm.tabIndex === 1) {
-                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
-                            res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + '笔/秒';
-                        }
+            //             if (vm.tabIndex === 1) {
+            //                 res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+            //                 res += datas[0].seriesName + ': ';
+            //                 res += datas[0].data[1] + '笔/分';
+            //             }
 
-                        if (vm.tabIndex === 3) {
-                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
-                            res += datas[0].seriesName + ': ';
-                            res += datas[0].data[1] + 'ms';
-                        }
+            //             if (vm.tabIndex === 3) {
+            //                 res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+            //                 res += datas[0].seriesName + ': ';
+            //                 res += datas[0].data[1] + 'ms';
+            //             }
 
-                        if (vm.tabIndex === 4) {
-                            res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
-                            for (var i = 0, l = datas.length; i < l; i++) {
-                                res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
-                            }
-                        }
+            //             if (vm.tabIndex === 4) {
+            //                 res = vm.formatDate(new Date(datas[0].axisValue)) + '<br/>';
+            //                 for (var i = 0, l = datas.length; i < l; i++) {
+            //                     res += '<br/>' + datas[i].seriesName + ': ' + datas[i].data[1] + '%';
+            //                 }
+            //             }
 
-                        return res;
-                    },
-                },
-                xAxis: {
-                    type: 'time',
-                    interval: 10 * 60000,
-                    axisLabel: {
-                        color: '#92B9D9',
-                        fontSize: 10,
-                        align: 'center',
-                        formatter: function(value) {
-                            // 格式化成月/日，只在第一个刻度显示年份
-                            let date = new Date(value);
-                            let h = date.getHours();
-                            let m = date.getMinutes();
+            //             return res;
+            //         },
+            //     },
+            //     xAxis: {
+            //         type: 'time',
+            //         interval: 10 * 60000,
+            //         axisLabel: {
+            //             color: '#92B9D9',
+            //             fontSize: 10,
+            //             align: 'center',
+            //             formatter: function(value) {
+            //                 // 格式化成月/日，只在第一个刻度显示年份
+            //                 let date = new Date(value);
+            //                 let h = date.getHours();
+            //                 let m = date.getMinutes();
 
-                            if (h <= 9) {
-                                h = '0' + h;
-                            }
+            //                 if (h <= 9) {
+            //                     h = '0' + h;
+            //                 }
 
-                            if (m <= 9) {
-                                m = '0' + m;
-                            }
+            //                 if (m <= 9) {
+            //                     m = '0' + m;
+            //                 }
 
-                            let texts = [h, m];
+            //                 let texts = [h, m];
 
-                            return texts.join(':');
-                        },
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#2A396E',
-                        },
-                    },
-                    axisTick: {
-                        show: false,
-                    },
-                    splitLine: {
-                        show: false,
-                        lineStyle: {
-                            color: ['red'],
-                            width: 1,
-                            type: 'solid',
-                        },
-                    },
-                },
-                yAxis: {
-                    type: 'value',
-                    axisLabel: {
-                        color: '#92B9D9',
-                        fontSize: 10,
-                    },
-                    axisLine: {
-                        show: false,
-                    },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: ['#2A396E'],
-                            width: 1,
-                            type: 'solid',
-                        },
-                    },
-                },
-                grid: {
-                    containLabel: true,
-                    top: '25%',
-                    left: '3%',
-                    right: '6%',
-                    bottom: '10%',
-                },
-                series: [],
-            };
+            //                 return texts.join(':');
+            //             },
+            //         },
+            //         axisLine: {
+            //             lineStyle: {
+            //                 color: '#2A396E',
+            //             },
+            //         },
+            //         axisTick: {
+            //             show: false,
+            //         },
+            //         splitLine: {
+            //             show: false,
+            //             lineStyle: {
+            //                 color: ['red'],
+            //                 width: 1,
+            //                 type: 'solid',
+            //             },
+            //         },
+            //     },
+            //     yAxis: {
+            //         type: 'value',
+            //         axisLabel: {
+            //             color: '#92B9D9',
+            //             fontSize: 10,
+            //         },
+            //         axisLine: {
+            //             show: false,
+            //         },
+            //         splitLine: {
+            //             show: true,
+            //             lineStyle: {
+            //                 color: ['#2A396E'],
+            //                 width: 1,
+            //                 type: 'solid',
+            //             },
+            //         },
+            //     },
+            //     grid: {
+            //         containLabel: true,
+            //         top: '25%',
+            //         left: '3%',
+            //         right: '6%',
+            //         bottom: '10%',
+            //     },
+            //     series: [],
+            // };
 
             // 二维码生成
-            if (res.PLF35403) {
-                this.qRSCDetail = res.PLF35403.meta;
+            if (res.msg.PLF35403) {
+                this.qRSCDetail = res.msg.PLF35403.meta;
                 this.qRSCDetail.title = '二维码生成';
-                this.PLF35403 = res.PLF35403;
+                this.PLF35403 = res.msg.PLF35403;
+                // if(this.qRSCDetail.SUC_RATE === '0.0'){
+                //     this.qRSCDetail.SUC_RATE *= 1
+                // }
+                // if(this.qRSCDetail.S_SUC_RATE === '0.0'){
+                //     this.qRSCDetail.S_SUC_RATE *= 1
+                // }
             }
 
             // 二维码下单
-            if (res.PLF35458) {
-                this.qRXDDetail = res.PLF35458.meta;
+            if (res.msg.PLF35458) {
+                this.qRXDDetail = res.msg.PLF35458.meta;
                 this.qRXDDetail.title = '二维码下单';
-                this.PLF35458 = res.PLF35458;
+                this.PLF35458 = res.msg.PLF35458;
+                // if(this.qRXDDetail.SUC_RATE === '0.0'){
+                //     this.qRXDDetail.SUC_RATE *= 1
+                // }
+                // if(this.qRXDDetail.S_SUC_RATE === '0.0'){
+                //     this.qRXDDetail.S_SUC_RATE *= 1
+                // }
             }
 
             // 二维码查询
-            if (res.PLF35457) {
-                this.qRCXDetail = res.PLF35457.meta;
+            if (res.msg.PLF35457) {
+                this.qRCXDetail = res.msg.PLF35457.meta;
                 this.qRCXDetail.title = '二维码查询';
-                this.PLF35457 = res.PLF35457;
+                this.PLF35457 = res.msg.PLF35457;
+                // if(this.qRCXDetail.SUC_RATE === '0.0'){
+                //     this.qRCXDetail.SUC_RATE *= 1
+                // }
+                // if(this.qRCXDetail.S_SUC_RATE === '0.0'){
+                //     this.qRCXDetail.S_SUC_RATE *= 1
+                // }
             }
 
             // 二维码退货
-            if (res.PLF35456) {
-                this.qRTHDetail = res.PLF35456.meta;
+            if (res.msg.PLF35456) {
+                this.qRTHDetail = res.msg.PLF35456.meta;
                 this.qRTHDetail.title = '二维码退货';
-                this.PLF35456 = res.PLF35456;
+                this.PLF35456 = res.msg.PLF35456;
+                // if(this.qRTHDetail.SUC_RATE === '0.0'){
+                //     this.qRTHDetail.SUC_RATE *= 1
+                // }
+                // if(this.qRTHDetail.S_SUC_RATE === '0.0'){
+                //     this.qRTHDetail.S_SUC_RATE *= 1
+                // }
             }
 
             // 总览
-            if (res.TOTAL) {
-                this.TOTAL = res.TOTAL;
+            if (res.msg.TOTAL) {
+                this.TOTAL = res.msg.TOTAL;
             }
 
             // let hChartData = res.line_show.hour;
             // let dChartData = res.line_show.day;
-            let hChartData = this.parseHourData(res.TOTAL);
-            let dChartData = this.parseDayData(res.TOTAL);
+            let hChartData = this.parseHourData(res.msg.TOTAL);
+            let dChartData = this.parseDayData(res.msg.TOTAL);
             this.dChartData = dChartData;
             this.hChartData = hChartData;
 
-            this.dayTopTime = this.formatDate(new Date(res.TOTAL.update_time).getTime());
-            this.dayTotalTradeRate = res.TOTAL.top_show.trade_rate;
-            this.dayTotalTradeNum = res.TOTAL.top_show.trade_num;
-            this.dayTotalTime = res.TOTAL.top_show.res_time;
+            this.dayTopTime = res.msg.TOTAL.update_time;
+            this.dayTotalTradeRate = res.msg.TOTAL.top_show.trade_rate;
+            this.dayTotalTradeNum = res.msg.TOTAL.top_show.trade_num;
+            this.dayTotalTime = res.msg.TOTAL.top_show.res_time;
 
             // const totalChart = window.echarts.init(document.getElementById('js-chart-total'));
             // if (this.tabIndex !== 4) {
@@ -1173,35 +1202,34 @@ export default {
             //         },
             //     },
             // ];
-            console.log(chartOpt);
+            // console.log(chartOpt);
             // totalChart.setOption(chartOpt);
 
             let chartData = {};
             if (this.slideIndex === 0) {
-                chartData = res.TOTAL;
+                chartData = res.msg.TOTAL;
             }
             if (this.slideIndex === 1) {
-                chartData = res.PLF35403;
+                chartData = res.msg.PLF35403;
             }
             if (this.slideIndex === 2) {
-                chartData = res.PLF35458;
+                chartData = res.msg.PLF35458;
             }
             if (this.slideIndex === 3) {
-                chartData = res.PLF35457;
+                chartData = res.msg.PLF35457;
             }
             if (this.slideIndex === 4) {
-                chartData = res.PLF35456;
+                chartData = res.msg.PLF35456;
             }
 
             this.reDrawChart(this.slideIndex, this.chartTitle, chartData);
-            // this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
         },
     },
     async mounted() {
         const vm = this;
         chartSwiper = new Swiper('.swiper-container', {
-            autoplay: false,
             // If we need pagination
+            autoplay: false,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -1212,9 +1240,8 @@ export default {
                     vm.chartTitle = vm.updateChartTitle(index);
                     chartSwiper.slideTo(index);
                     vm.slideIndex = index;
-                    // vm.tabIndex = 1;
-
-                    console.log('slideChange');
+                    // console.log('slideChange');
+                    
                     if (index === 0) {
                         vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
                     }
@@ -1248,7 +1275,6 @@ export default {
                     let index = chartCC.activeIndex;
                     vm.chartTitle = vm.updateChartTitle(index);
                     vm.slideIndex = index;
-                    // vm.tabIndex = 1;
 
                     if (index === 0) {
                         vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
@@ -1272,7 +1298,6 @@ export default {
                     let index = chartCC.activeIndex;
                     vm.chartTitle = vm.updateChartTitle(index);
                     vm.slideIndex = index;
-                    // vm.tabIndex = 1;
 
                     if (index === 0) {
                         vm.reDrawChart(index, '武汉地铁', vm.TOTAL, 1);
@@ -1294,11 +1319,15 @@ export default {
         });
 
         window.chart = chartSwiper;
+
+        // this.reDrawChart(this.slideIndex, this.chartTitle, chartData);
+        // this.bullet = document.querySelectorAll('.swiper-pagination-bullet');
+    
         this.initPage();
 
-        setInterval(() => {
+        timer = setInterval(() => {
             this.initPage();
-        }, 5000);
+        }, 59000);
     },
 };
 </script>
